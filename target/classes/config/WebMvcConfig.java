@@ -21,4 +21,5 @@ public class WebMvcConfig implements WebMvcConfigurer {
         resolver.setSuffix(".jsp");
         registry.viewResolver(resolver);
     }
+
 }
