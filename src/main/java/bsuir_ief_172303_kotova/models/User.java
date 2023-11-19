@@ -2,9 +2,13 @@ package bsuir_ief_172303_kotova.models;
 
 import javax.persistence.*;
 import java.util.List;
-
+import lombok.*;
 
 @Entity
+@Getter
+@Setter
+@NoArgsConstructor
+@Table(name = "users")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,7 +34,7 @@ public class User {
 
     private String role;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "user", orphanRemoval = true)
     private List<Order> orders;
 
     // Геттеры, сеттеры и другие методы

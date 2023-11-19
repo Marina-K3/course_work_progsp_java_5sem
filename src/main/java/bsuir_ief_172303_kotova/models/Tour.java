@@ -1,9 +1,17 @@
 package bsuir_ief_172303_kotova.models;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
+@Getter
+@Setter
+@NoArgsConstructor
+@Table(name = "tours")
 public class Tour {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,7 +23,7 @@ public class Tour {
     @Column(name = "arrival_time")
     private LocalDateTime arrivalTime;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.REFRESH)
     @JoinColumn(name = "image_id")
     private Image image;
 
@@ -25,19 +33,28 @@ public class Tour {
     private int durationDays;
 
     private String name;
+
     private String description;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.REFRESH)
     @JoinColumn(name = "country_id")
     private Country country;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.REFRESH)
     @JoinColumn(name = "city_id")
     private City city;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.REFRESH)
     @JoinColumn(name = "hotel_id")
     private Hotel hotel;
+
+    @ManyToOne(cascade = CascadeType.REFRESH)
+    @JoinColumn(name = "flight_id")
+    private Flight flight;
+
+    @ManyToOne(cascade = CascadeType.REFRESH)
+    @JoinColumn(name = "return_flight_id")
+    private Flight returnFlight;
 
     // Геттеры, сеттеры и другие методы
 }
