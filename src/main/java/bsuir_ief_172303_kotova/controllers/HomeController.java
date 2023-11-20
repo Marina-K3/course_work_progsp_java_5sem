@@ -14,11 +14,21 @@ public class HomeController {
 
     private final UserService userService;
 
-
     @GetMapping("/")
-    public String login(Principal principal, Model model) {
+    public String home(Principal principal, Model model) {
         model.addAttribute("user",userService.getUserByPrincipal(principal));
         return "home";
+    }
+
+    @GetMapping("/about")
+    public String about() {
+        return "about";
+    }
+
+
+    @GetMapping("/contacts")
+    public String contacts() {
+        return "contacts";
     }
 
 }

@@ -20,8 +20,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                    .antMatchers("/", "/tours", "/about", "/registration","/contacts").permitAll()
-                    .antMatchers("/dashboard").hasRole("USER") // Требовать роль USER для доступа к /dashboard
+                    .antMatchers("/", "/tours", "/about", "/registration","/login","/contacts").permitAll()
+                    .antMatchers("/profile").hasRole("USER") // Требовать роль USER для доступа к /profile
                     .antMatchers("/admin").hasRole("ADMIN") // Требовать роль ADMIN для доступа к /admin
                     .anyRequest().authenticated()
                 .and()

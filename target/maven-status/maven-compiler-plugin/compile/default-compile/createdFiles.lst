@@ -1,2 +1,13 @@
 bsuir_ief_172303_kotova\Application.class
+bsuir_ief_172303_kotova\controllers\UserController.class
+bsuir_ief_172303_kotova\models\Image.class
+bsuir_ief_172303_kotova\models\Tour.class
 bsuir_ief_172303_kotova\controllers\HomeController.class
+bsuir_ief_172303_kotova\models\City.class
+bsuir_ief_172303_kotova\models\Flight.class
+bsuir_ief_172303_kotova\models\Hotel.class
+bsuir_ief_172303_kotova\models\Country.class
+bsuir_ief_172303_kotova\models\Order.class
+bsuir_ief_172303_kotova\services\UserService.class
+bsuir_ief_172303_kotova\repositories\UserRepository.class
+bsuir_ief_172303_kotova\models\User.class

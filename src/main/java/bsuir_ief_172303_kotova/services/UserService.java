@@ -3,6 +3,7 @@ import bsuir_ief_172303_kotova.models.User;
 import bsuir_ief_172303_kotova.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -20,12 +21,15 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-@Service
+
 @Slf4j
 @RequiredArgsConstructor
+@Service
 public class UserService implements UserDetailsService {
     private final UserRepository userRepository;
+
     private final PasswordEncoder passwordEncoder;
+
 
 
     @Override
@@ -60,7 +64,7 @@ public class UserService implements UserDetailsService {
     }
 
     public void banUser(Long id) {
-        User user = userRepository.findById(id).orElse(null);
+        User user = userRepository.getUserById(id);
         if(user!=null){
             if(user.isActive()){
                 user.setActive(false);

@@ -27,15 +27,15 @@
                 <nav class="h-[100%] md:w-[70%]">
                     <ul class="h-[100%] flex items-center gap-8 justify-end">
                         <li class="list-none  "><a class="decoration-none text-white hover:text-color3 transition-all duration-500"
-                                                   href="">Главная</a></li>
+                                                   href="/">Главная</a></li>
                         <li class="list-none"><a class="decoration-none text-white  hover:text-color3 transition-all duration-500"
-                                                 href="">О нас</a></li>
+                                                 href="/about">О нас</a></li>
                         <li class="list-none "><a class="decoration-none text-white  hover:text-color3 transition-all duration-500"
-                                                  href="">Туры</a></li>
+                                                  href="/tours">Туры</a></li>
                         <li class="list-none"><a class="decoration-none text-white  hover:text-color3 transition-all duration-500"
-                                                 href="">Регистрация</a></li>
+                                                 href="/registration">Регистрация</a></li>
                         <li class="list-none"><a class="decoration-none text-white  hover:text-color3 transition-all duration-500"
-                                                 href="">Контакты</a></li>
+                                                 href="/contacts">Контакты</a></li>
                     </ul>
                 </nav>
             </header>
@@ -51,14 +51,14 @@
         <section class="w-full justify-center mt-[80px] hidden lg:flex relative">
             <div class=" bg-white bg-opacity-40 container absolute w-[1000px] xl:w-[1200px] h-[100px] flex justify-center items-center backdrop-blur-lg">
                 <div class="w-[950px] xl:w-[1100px]  container h-auto absolute m-[10px]  ">
-                    <form action="" class="flex font-primary">
+                    <form action="/login" method="post" class="flex font-primary">
                         <p class="py-[15px] ps-5 w-[25%] outline-none focus:outline-none">у вас есть аккаунт?</p>
-                        <input type = "email"  name="email" placeholder="Email" class="w-[25%] py-[15px] bg-white  ps-" style="padding-left: 10px">
+                        <input type = "email"   name="email" placeholder="Email" class="w-[25%] py-[15px] bg-white  ps-" style="padding-left: 10px">
 
                         <input type="password"  name="password" placeholder="Пароль" class="w-[25%] py-[15px] bg-white  ps-" style="padding-left: 10px">
 
 
-                        <a href="" role="button" class="bg-color1 w-[25%] text-white flex items-center justify-center text-[18px] hover:bg-color3 transition-all duration-500" ><i class="bi bi-person me-2"></i>Вход</a>
+                        <button type="submit" class="bg-color1 w-[25%] text-white flex items-center justify-center text-[18px] hover:bg-color3 transition-all duration-500" ><i class="bi bi-person me-2"></i>Вход</button>
                     </form>
                 </div>
             </div>

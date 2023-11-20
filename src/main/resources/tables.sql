@@ -1,13 +1,27 @@
--- Создание таблицы cities
-CREATE TABLE cities (
-                        id BIGINT PRIMARY KEY AUTO_INCREMENT,
-                        name VARCHAR(255)
-);
+-- Удаление таблиц
+DROP TABLE IF EXISTS orders;
+DROP TABLE IF EXISTS tours;
+DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS flights;
+DROP TABLE IF EXISTS hotels;
+DROP TABLE IF EXISTS images;
+DROP TABLE IF EXISTS cities;
+DROP TABLE IF EXISTS countries;
+
+
 
 -- Создание таблицы countries
 CREATE TABLE countries (
                            id BIGINT PRIMARY KEY AUTO_INCREMENT,
                            name VARCHAR(255)
+);
+
+-- Создание таблицы cities
+CREATE TABLE cities (
+                        id BIGINT PRIMARY KEY AUTO_INCREMENT,
+                        name VARCHAR(255),
+                        country_id BIGINT,
+                        FOREIGN KEY (country_id) REFERENCES countries(id)
 );
 
 -- Создание таблицы flights
@@ -39,16 +53,6 @@ CREATE TABLE images (
                         image_data LONGBLOB
 );
 
--- Создание таблицы orders
-CREATE TABLE orders (
-                        id BIGINT PRIMARY KEY AUTO_INCREMENT,
-                        user_id BIGINT,
-                        tour_id BIGINT,
-                        order_date DATE,
-                        cancelled BOOLEAN,
-                        FOREIGN KEY (user_id) REFERENCES users (id),
-                        FOREIGN KEY (tour_id) REFERENCES tours (id)
-);
 
 -- Создание таблицы tours
 CREATE TABLE tours (
@@ -84,4 +88,16 @@ CREATE TABLE users (
                        is_active BOOLEAN,
                        password VARCHAR(255),
                        role VARCHAR(255)
+);
+
+
+-- Создание таблицы orders
+CREATE TABLE orders (
+                        id BIGINT PRIMARY KEY AUTO_INCREMENT,
+                        user_id BIGINT,
+                        tour_id BIGINT,
+                        order_date DATE,
+                        cancelled BOOLEAN,
+                        FOREIGN KEY (user_id) REFERENCES users (id),
+                        FOREIGN KEY (tour_id) REFERENCES tours (id)
 );

@@ -1,4 +1,3 @@
-package com.sorokushka.agency.configurations;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -21,16 +20,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/", "/tour/**", "/images/**", "/registration","/user/**","/static/**","/doc/**","/image/**")
-                .permitAll()
-                .anyRequest().authenticated()
+                    .antMatchers("/", "/tours", "/about", "/registration","/login","/contacts").permitAll()
+                    .antMatchers("/profile").hasRole("USER") // Требовать роль USER для доступа к /profile
+                    .antMatchers("/admin").hasRole("ADMIN") // Требовать роль ADMIN для доступа к /admin
+                    .anyRequest().authenticated()
                 .and()
                 .formLogin()
-                .loginPage("/login")
-                .permitAll()
+                    .loginPage("/login")
+                    .permitAll()
                 .and()
                 .logout()
-                .permitAll();
+                    .logoutUrl("/logout") // Указать URL для выхода из системы
+                    .logoutSuccessUrl("/") // Указать страницу перенаправления после выхода из системы
+                    .permitAll();
+
     }
 
     @Override
@@ -41,7 +44,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean
     public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder(8);
+        return new BCryptPasswordEncoder(9);
     }
 
     @Bean
