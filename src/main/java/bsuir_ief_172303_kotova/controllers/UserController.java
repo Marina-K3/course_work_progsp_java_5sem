@@ -18,11 +18,15 @@ import java.security.Principal;
 public class UserController {
     private final UserService userService;
 
-
     @PostMapping("/login")
     public String loginUser(@RequestParam("email") String email, @RequestParam("password") String password) {
         if (userService.authenticateUser(email, password)) {
-            return "redirect:/dashboard";
+            User user = userService.getUserByEmail(email);
+            if (user.getRole().equals("ADMIN")) {
+                return "redirect:/admin";
+            } else {
+                return "redirect:/dashboard";
+            }
         } else {
             return "redirect:/?error";
         }
