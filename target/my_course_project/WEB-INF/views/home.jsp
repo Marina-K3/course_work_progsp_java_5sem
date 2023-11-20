@@ -12,8 +12,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MyFlight</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/output.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="/static/css/output.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" />
 </head>
 <body class="font-primary">
 <main class="w-full">
@@ -22,7 +22,7 @@
             <header
                     class="w-[85%]  xl:w-[73%]  container hidden lg:flex justify-between h-[60px]  items-center py-[45px] border-b-[1px] border-white border-opacity-40">
                 <figure class="w-[140px]">
-                    <img src="${pageContext.request.contextPath}/img/logo-light.png" alt="" class="w-[100%]">
+                    <img src="/static/img/logo-light.png" alt="" class="w-[100%]">
                 </figure>
                 <nav class="h-[100%] md:w-[70%]">
                     <ul class="h-[100%] flex items-center gap-8 justify-end">
@@ -97,7 +97,7 @@
             <div class=" w-full lg:w-[50%]   flex flex-col justify-center items-center bg-color5 h-auto pb-8 lg:pb-0 mt-10 lg:mt-0 ">
                 <figure class="w-[70%] h-[500px] relative">
                     <div class="w-[100%] h-[100%] bg-color4 absolute left-8 top-8"></div>
-                    <img src="${pageContext.request.contextPath}/img/about.jpeg" alt="" class="w-[100%] h-[100%] absolute z-10 object-cover hover:scale-[.95] transition-all duration-500">
+                    <img src="/static/img/about.jpeg" alt="" class="w-[100%] h-[100%] absolute z-10 object-cover hover:scale-[.95] transition-all duration-500">
                 </figure>
             </div>
         </div>
@@ -121,7 +121,7 @@
                             </div>
                             <a href="" class="underline decoration-color1 text-color6 flex mb-2">Tour details</a>
                         </div>
-                        <img src="${pageContext.request.contextPath}/img/maldives1.jpg" alt="" class="w-[100%] h-[100%] object-cover brightness-75 absolute">
+                        <img src="/static/img/maldives1.jpg" alt="" class="w-[100%] h-[100%] object-cover brightness-75 absolute">
                         <p class="absolute uppercase text-white bg-color3 px-4 py-1 right-1 top-12 rotate-[-90deg] ">Maldives</p>
                         <figcaption class="absolute text-white bottom-8 right-10 fig">
                             <p class="capitalize font-secondary text-3xl">Maldives tours</p>
@@ -141,7 +141,7 @@
                             </div>
                             <a href="" class="underline decoration-color1 text-color6 flex mb-2">Tour details</a>
                         </div>
-                        <img src="../img/2.jpg" alt="" class="w-[100%] h-[100%] object-cover brightness-75 absolute">
+                        <img src="/static/img/2.jpg" alt="" class="w-[100%] h-[100%] object-cover brightness-75 absolute">
                         <p class="absolute uppercase text-white bg-color3 px-4 py-1 right-1 top-12 rotate-[-90deg] ">italy</p>
                         <figcaption class="absolute text-white bottom-8 right-10 fig">
                             <p class="capitalize font-secondary text-3xl">Roma</p>
@@ -161,7 +161,7 @@
                             </div>
                             <a href="" class="underline decoration-color1 text-color6 flex mb-2">Tour details</a>
                         </div>
-                        <img src="${pageContext.request.contextPath}/img/france1.jpg" alt="" class="w-[100%] h-[100%] object-cover brightness-75 absolute">
+                        <img src="/static/img/france1.jpg" alt="" class="w-[100%] h-[100%] object-cover brightness-75 absolute">
                         <p class="absolute uppercase text-white bg-color3 px-4 py-1 right-1 top-12 rotate-[-90deg] ">France</p>
                         <figcaption class="absolute text-white bottom-8 right-10 fig">
                             <p class="capitalize font-secondary text-3xl">France</p>
@@ -170,7 +170,7 @@
                     </figure>
                     <figure class="w-full md:w-[45%] xl:w-[30%] h-[450px] relative photo transition-all duration-1000 ">
                         <div class="w-[100%] h-[100%] bottom-photo absolute bg-white flex flex-col justify-center px-5">
-                            <p class="text-3xl text-color3 capitalize font-secondary">greece tour</p>
+                            <p class="text-3xl text-color3 capitalize font-secondary">Greece tour</p>
                             <p class="text-color1 mb-4">$500 / per persons</p>
                             <p class="text-color6">Travel non lorem ac erat susce bibendum nulla facilisi. Sedeuter nunc voluat miss conse viventa amet vestibulum.</p>
                             <div class="flex flex-wrap my-4">
@@ -181,7 +181,7 @@
                             </div>
                             <a href="" class="underline decoration-color1 text-color6 flex mb-2">Tour details</a>
                         </div>
-                        <img src="../img/greece1.jpg" alt="" class="w-[100%] h-[100%] object-cover brightness-75 absolute">
+                        <img src="/static/img/greece1.jpg" alt="" class="w-[100%] h-[100%] object-cover brightness-75 absolute">
                         <p class="absolute uppercase text-white bg-color3 px-4 py-1 right-[-15px] top-12 rotate-[-90deg] ">greece</p>
                         <figcaption class="absolute text-white bottom-8 right-10 fig">
                             <p class="capitalize font-secondary text-3xl">greece tours</p>
@@ -201,7 +201,7 @@
                             </div>
                             <a href="" class="underline decoration-color1 text-color6 flex mb-2">Tour details</a>
                         </div>
-                        <img src="${pageContext.request.contextPath}/img/canada1.jpg" alt="" class="w-[100%] h-[100%] object-cover brightness-75 absolute">
+                        <img src="/static/img/canada1.jpg" alt="" class="w-[100%] h-[100%] object-cover brightness-75 absolute">
                         <p class="absolute uppercase text-white bg-color3 px-4 py-1 right-[-15px] top-12 rotate-[-90deg] ">canada</p>
                         <figcaption class="absolute text-white bottom-8 right-10 fig">
                             <p class="capitalize font-secondary text-3xl">canada tours</p>
@@ -221,7 +221,7 @@
                             </div>
                             <a href="" class="underline decoration-color1 text-color6 flex mb-2">Tour details</a>
                         </div>
-                        <img src="${pageContext.request.contextPath}/img/44-1.jpg" alt="" class="w-[100%] h-[100%] object-cover brightness-75 absolute">
+                        <img src="/static/img/44-1.jpg" alt="" class="w-[100%] h-[100%] object-cover brightness-75 absolute">
                         <p class="absolute uppercase text-white bg-color3 px-4 py-1 right-[-15px] top-12 rotate-[-90deg] ">dubai</p>
                         <figcaption class="absolute text-white bottom-8 right-10 fig">
                             <p class="capitalize font-secondary text-3xl">dubai</p>
@@ -267,7 +267,7 @@
             <p class="text-3xl sm:text-5xl font-secondary text-color1 px-5">от <span class=" text-color3">MyFlight</span></p>
             <div class="w-full flex lg:relative py-10 flex-wrap lg:px-3 xl:px-0 px-6">
                 <figure class="w-full lg:w-[70%] lg:absolute">
-                    <img src="${pageContext.request.contextPath}/img/2.jpg" alt="" class="w-[100%]">
+                    <img src="/static/img/2.jpg" alt="" class="w-[100%]">
                 </figure>
                 <div class="w-full lg:w-[50%] lg:absolute lg:h-[400px] bg-map bg-no-repeat bg-center z-10 lg:right-0 xl:top-[170%] md:top-20 px-10 py-16 bg-white" >
                     <p class="uppercase text-color1">Мы рекомендуем</p>
@@ -308,7 +308,7 @@
                 <p class="text-5xl font-secondary text-color3 px-5">Горящие <span class="text-color1">Туры</span></p>
                 <div class="flex flex-wrap justify-center xl:justify-between gap-10 px-6 xl:px-0 py-8 lg:px-3 ">
                     <figure class="w-full md:w-[45%] xl:w-[30%] h-[450px] relative  transition-all duration-1000 overflow-hidden group ">
-                        <img src="${pageContext.request.contextPath}/img/canada1-1.jpeg" alt="" class="w-[100%] h-[100%] object-cover group-hover:brightness-75 group-hover:scale-[1.2] absolute transition-all duration-1000">
+                        <img src="/static/img/canada1-1.jpeg" alt="" class="w-[100%] h-[100%] object-cover group-hover:brightness-75 group-hover:scale-[1.2] absolute transition-all duration-1000">
                         <p class="absolute uppercase text-white bg-color1 px-4 py-1 right-1 top-12 rotate-[-90deg] ">2 Tours</p>
                         <figcaption class="absolute text-white bottom-[20px] left-5  group-hover:bottom-[50px]  transition-all duration-700 w-full  ">
                             <div class="flex after:contetn-[''] after:h-[1px] after:bg-op-50 after:w-[20%] after:bg-white after:absolute after:bottom-[-8px] group-hover:after:w-[90%]  after:transition-all after:duration-1000" ><i class="bi bi-geo-alt text-2xl text-white me-2"></i> <p class="capitalize font-secondary text-3xl">Canada</p></div>
@@ -320,7 +320,7 @@
                         </figcaption>
                     </figure>
                     <figure class="w-full md:w-[45%] xl:w-[30%] h-[450px] relative  transition-all duration-1000 overflow-hidden group ">
-                        <img src="${pageContext.request.contextPath}/img/maldives1-1.jpeg" alt="" class="w-[100%] h-[100%] object-cover group-hover:brightness-75 group-hover:scale-[1.2] absolute transition-all duration-1000">
+                        <img src="/static/img/maldives1-1.jpeg" alt="" class="w-[100%] h-[100%] object-cover group-hover:brightness-75 group-hover:scale-[1.2] absolute transition-all duration-1000">
                         <p class="absolute uppercase text-white bg-color1 px-4 py-1 right-1 top-12 rotate-[-90deg] ">2 Tours</p>
                         <figcaption class="absolute text-white bottom-[20px] left-5  group-hover:bottom-[50px]  transition-all duration-700 w-full  ">
                             <div class="flex after:contetn-[''] after:h-[1px] after:bg-op-50 after:w-[20%] after:bg-white after:absolute after:bottom-[-8px] group-hover:after:w-[90%]  after:transition-all after:duration-1000" ><i class="bi bi-geo-alt text-2xl text-white me-2"></i> <p class="capitalize font-secondary text-3xl">Maldives</p></div>
@@ -332,7 +332,7 @@
                         </figcaption>
                     </figure>
                     <figure class="w-full md:w-[45%] xl:w-[30%] h-[450px] relative  transition-all duration-1000 overflow-hidden group ">
-                        <img src="${pageContext.request.contextPath}/img/italy1.jpeg" alt="" class="w-[100%] h-[100%] object-cover group-hover:brightness-75 group-hover:scale-[1.2] absolute transition-all duration-1000">
+                        <img src="/static/img/italy1.jpeg" alt="" class="w-[100%] h-[100%] object-cover group-hover:brightness-75 group-hover:scale-[1.2] absolute transition-all duration-1000">
                         <p class="absolute uppercase text-white bg-color1 px-4 py-1 right-1 top-12 rotate-[-90deg] ">6 Tours</p>
                         <figcaption class="absolute text-white bottom-[20px] left-5  group-hover:bottom-[50px]  transition-all duration-700 w-full  ">
                             <div class="flex after:contetn-[''] after:h-[1px] after:bg-op-50 after:w-[20%] after:bg-white after:absolute after:bottom-[-8px] group-hover:after:w-[90%]  after:transition-all after:duration-1000" ><i class="bi bi-geo-alt text-2xl text-white me-2"></i> <p class="capitalize font-secondary text-3xl">Italy</p></div>
@@ -354,7 +354,7 @@
                 <p class="text-5xl font-secondary text-color4 px-5">Ваши<span class="text-white"> ОТЗЫВЫ</span></p>
                 <div class="flex flex-wrap justify-center xl:justify-between gap-10 px-6 xl:px-0 py-8 lg:px-3 ">
                     <figure class="w-full md:w-[45%] xl:w-[30%] h-[450px] relative  transition-all duration-1000  group mb-20   ">
-                        <div class="w-[100%] h-[100%] overflow-hidden group transition-all duration-1000 relative">     <img src="img/22.jpeg" alt="" class="w-[100%] h-[100%] object-cover group-hover:brightness-75 group-hover:scale-[1.2] absolute transition-all duration-1000"></div>
+                        <div class="w-[100%] h-[100%] overflow-hidden group transition-all duration-1000 relative">     <img src="/static/img/22.jpeg" alt="" class="w-[100%] h-[100%] object-cover group-hover:brightness-75 group-hover:scale-[1.2] absolute transition-all duration-1000"></div>
                         <div class="absolute uppercase text-white bg-color1 px-2 left-3 top-12 flex flex-col items-center "><p>Авг</p><p class="font-bold">18</p></div>
                         <figcaption class=" absolute h-[150px] w-[85%]  bg-white bottom-[-80px]  left-[8%] flex flex-col justify-center px-8 group-hover:bottom-10 transition-all duration-1000 ">
                             <p class="uppercase text-color4">Ярослав</p>
@@ -362,7 +362,7 @@
                         </figcaption>
                     </figure>
                     <figure class="w-full md:w-[45%] xl:w-[30%] h-[450px] relative  transition-all duration-1000  group mb-20   ">
-                        <div class="w-[100%] h-[100%] overflow-hidden group transition-all duration-1000 relative">     <img src="img/11.jpeg" alt="" class="w-[100%] h-[100%] object-cover group-hover:brightness-75 group-hover:scale-[1.2] absolute transition-all duration-1000"></div>
+                        <div class="w-[100%] h-[100%] overflow-hidden group transition-all duration-1000 relative">     <img src="/static/img/11.jpeg" alt="" class="w-[100%] h-[100%] object-cover group-hover:brightness-75 group-hover:scale-[1.2] absolute transition-all duration-1000"></div>
                         <div class="absolute uppercase text-white bg-color1 px-2 left-3 top-12 flex flex-col items-center "><p>Авг</p><p class="font-bold">28</p></div>
                         <figcaption class=" absolute h-[150px] w-[85%]  bg-white bottom-[-80px]  left-[8%] flex flex-col justify-center px-3 group-hover:bottom-10 transition-all duration-1000 ">
                             <p class="uppercase text-color4">Елена</p>
@@ -370,7 +370,7 @@
                         </figcaption>
                     </figure>
                     <figure class="w-full md:w-[45%] xl:w-[30%] h-[450px] relative  transition-all duration-1000  group mb-20   ">
-                        <div class="w-[100%] h-[100%] overflow-hidden group transition-all duration-1000 relative">     <img src="img/18-1.jpeg" alt="" class="w-[100%] h-[100%] object-cover group-hover:brightness-75 group-hover:scale-[1.2] absolute transition-all duration-1000"></div>
+                        <div class="w-[100%] h-[100%] overflow-hidden group transition-all duration-1000 relative">     <img src="/static/img/18-1.jpeg" alt="" class="w-[100%] h-[100%] object-cover group-hover:brightness-75 group-hover:scale-[1.2] absolute transition-all duration-1000"></div>
                         <div class="absolute uppercase text-white bg-color1 px-2 left-3 top-12 flex flex-col items-center "><p>Окт</p><p class="font-bold">01</p></div>
                         <figcaption class=" absolute h-[150px] w-[85%]  bg-white bottom-[-80px]  left-[8%] flex flex-col justify-center px-5 group-hover:bottom-10 transition-all duration-1000 ">
                             <p class="uppercase text-color4">Дарина</p>
@@ -384,16 +384,16 @@
     <section class="w-full flex justify-center bg-color7 overflow-hidden  ">
         <div class="w-full container flex whitespace-nowrap overflow-hidden group  ">
             <div class="flex  logos-slide animate-anime w-full flex-wrap whitespace-nowrap group-hover:pause  ">
-                <figure class="w-[25%] "><img src="img/1.png" alt="" w-[100%]></figure>
-                <figure class="w-[25%] "><img src="img/2.png" alt="" w-[100%]></figure>
-                <figure class="w-[25%]  "><img src="img/3.png" alt="" w-[100%]></figure>
-                <figure class="w-[25%]  "><img src="img/4.png" alt="" w-[100%]></figure>
+                <figure class="w-[25%] "><img src="/static/img/1.png" alt="" w-[100%]></figure>
+                <figure class="w-[25%] "><img src="/static/img/2.png" alt="" w-[100%]></figure>
+                <figure class="w-[25%]  "><img src="/static/img/3.png" alt="" w-[100%]></figure>
+                <figure class="w-[25%]  "><img src="/static/img/4.png" alt="" w-[100%]></figure>
             </div>
             <div class="flex  logos-slide  w-full flex-wrap  whitespace-nowrap ms-[-200%] animate-anime group-hover:pause ">
-                <figure class="w-[25%] "><img src="img/1.png" alt="" w-[100%]></figure>
-                <figure class="w-[25%] "><img src="img/2.png" alt="" w-[100%]></figure>
-                <figure class="w-[25%]  "><img src="img/3.png" alt="" w-[100%]></figure>
-                <figure class="w-[25%]  "><img src="img/4.png" alt="" w-[100%]></figure>
+                <figure class="w-[25%] "><img src="/static/img/1.png" alt="" w-[100%]></figure>
+                <figure class="w-[25%] "><img src="/static/img/2.png" alt="" w-[100%]></figure>
+                <figure class="w-[25%]  "><img src="/static/img/3.png" alt="" w-[100%]></figure>
+                <figure class="w-[25%]  "><img src="/static/img/4.png" alt="" w-[100%]></figure>
             </div>
         </div>
     </section>
@@ -416,7 +416,7 @@
             <div class="flex  justify-between  my-10 flex-wrap  ">
                 <div class="w-full md:w-[30%] flex flex-col py-2  my-5 px-6 " >
                     <figure class="w-[80%]">
-                        <img src="${pageContext.request.contextPath}/img/logo-light.png" alt="" class="w-[100%]">
+                        <img src="/static/img/logo-light.png" alt="" class="w-[100%]">
                     </figure>
                     <p class="text-color6 my-5">"Раскройте крылья своих мечтаний с MyFlight - вашим путеводителем в мир приключений и незабываемых полетов."</p>
                     <ul class="flex  ">
@@ -445,5 +445,5 @@
     </section>
 </main>
 </body>
-<script src="${pageContext.request.contextPath}/js/master.js"></script>
+<script src="/static/js/master.js"></script>
 </html>

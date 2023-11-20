@@ -23,11 +23,12 @@ public class UserController {
    // private final FlightService flightService;
 
     // общие (авторизация и регистрация(пользователя))
-    @GetMapping("/")
+    @GetMapping("/login")
     public String login(Principal principal, Model model) {
         model.addAttribute("user",userService.getUserByPrincipal(principal));
         return "login";
     }
+
 
     @PostMapping("/login")
     public String loginUser(@RequestParam("email") String email, @RequestParam("password") String password) {
