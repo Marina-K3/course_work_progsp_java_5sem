@@ -6,7 +6,6 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
@@ -64,20 +63,6 @@
             </div>
         </section>
     </section>
-    <section class="w-full flex lg:hidden justify-center  bg-color5">
-        <div class="w-full container flex justify-center py-10">
-            <form action="" class="w-[80%] " >
-                <p class="w-full py-5 ps-5">у вас есть аккаунт?</p>
-
-               <input type = "email" id="email" name="email" placeholder="Email" class="w-full py-5 bg-white  ps-5">
-
-                <input type="password" id="password" name="password" placeholder="Пароль" class="w-full py-5 bg-white  ps-5">
-
-
-                <a href="" role="button" class="bg-color1 py-5 w-full text-white flex items-center justify-center text-[18px] hover:bg-color3 transition-all duration-500" ><i class="bi bi-person me-2"></i>Вход</a>
-            </form>
-        </div>
-    </section>
     <section class="w-full flex justify-center bg-color5 h-auto">
         <div class="w-full container flex justify-between flex-wrap px-0 2xl:px-36 h-auto py-16 ">
             <div class="w-full lg:w-[50%]  bg-color px-5 ">
@@ -110,122 +95,122 @@
                 <div class="flex flex-wrap md:justify-between gap-10 px-6 xl:px-0 py-8 lg:px-3 ">
                     <figure class="w-full md:w-[45%] xl:w-[30%] h-[450px] relative photo transition-all duration-1000 ">
                         <div class="w-[100%] h-[100%] bottom-photo absolute bg-white flex flex-col justify-center px-5">
-                            <p class="text-3xl text-color3 capitalize font-secondary">Maldives tour</p>
-                            <p class="text-color1 mb-4">$2.500 / per persons</p>
-                            <p class="text-color6">Travel non lorem ac erat susce bibendum nulla facilisi. Sedeuter nunc voluat miss conse viventa amet vestibulum.</p>
+                            <p class="text-3xl text-color3 capitalize font-secondary">Мальдивы тур</p>
+                            <p class="text-color1 mb-4">$2.500 / с человека</p>
+                            <p class="text-color6">Обязательно побывайте на этих островах - поверьте, Мальдивы того стоят</p>
                             <div class="flex flex-wrap my-4">
-                                <div class="w-[50%] flex"><i class="bi bi-clock text-color4"></i><p class="text-color6 ms-2">12 Days</p></div>
-                                <div class="w-[50%] flex"><i class="bi bi-geo-alt text-color4"></i><p class="text-color6 ms-2">Maldives</p></div>
+                                <div class="w-[50%] flex"><i class="bi bi-clock text-color4"></i><p class="text-color6 ms-2">12 Дней</p></div>
+                                <div class="w-[50%] flex"><i class="bi bi-geo-alt text-color4"></i><p class="text-color6 ms-2">Mальдивы</p></div>
                                 <div class="w-[50%] flex"><i class="bi bi-person text-color4"></i></i><p class="text-color6 ms-2">12+</p></div>
-                                <div class="w-[50%] flex"><i class="bi bi-emoji-smile text-color4"></i></i><p class="text-color6 ms-2">9.8 Superb</p></div>
+                                <div class="w-[50%] flex"><i class="bi bi-emoji-smile text-color4"></i></i><p class="text-color6 ms-2">9.8 Звёзд</p></div>
                             </div>
-                            <a href="" class="underline decoration-color1 text-color6 flex mb-2">Tour details</a>
+                            <a href="" class="underline decoration-color1 text-color6 flex mb-2">Тур детали</a>
                         </div>
                         <img src="/static/img/maldives1.jpg" alt="" class="w-[100%] h-[100%] object-cover brightness-75 absolute">
-                        <p class="absolute uppercase text-white bg-color3 px-4 py-1 right-1 top-12 rotate-[-90deg] ">Maldives</p>
+                        <p class="absolute uppercase text-white bg-color3 px-4 py-1 right-1 top-12 rotate-[-90deg] ">Мальдивы</p>
                         <figcaption class="absolute text-white bottom-8 right-10 fig">
-                            <p class="capitalize font-secondary text-3xl">Maldives tours</p>
-                            <p class="text-right">$2500 / per persons</p>
+                            <p class="capitalize font-secondary text-3xl">Мальдивы тур</p>
+                            <p class="text-right">$2.500 / с человека</p>
                         </figcaption>
                     </figure>
                     <figure class="w-full md:w-[45%] xl:w-[30%] h-[450px] relative photo transition-all duration-1000 ">
                         <div class="w-[100%] h-[100%] bottom-photo absolute bg-white flex flex-col justify-center px-5">
-                            <p class="text-3xl text-color3 capitalize font-secondary">Roma</p>
-                            <p class="text-color1 mb-4">$1.300 / per persons</p>
-                            <p class="text-color6">Travel non lorem ac erat susce bibendum nulla facilisi. Sedeuter nunc voluat miss conse viventa amet vestibulum.</p>
+                            <p class="text-3xl text-color3 capitalize font-secondary">Рим</p>
+                            <p class="text-color1 mb-4">$1.300 / с человека</p>
+                            <p class="text-color6">Загляните в сердце Италии - его суетливую и притягательную столицу Рим</p>
                             <div class="flex flex-wrap my-4">
-                                <div class="w-[50%] flex"><i class="bi bi-clock text-color4"></i><p class="text-color6 ms-2">6 Days</p></div>
-                                <div class="w-[50%] flex"><i class="bi bi-geo-alt text-color4"></i><p class="text-color6 ms-2">Italy</p></div>
+                                <div class="w-[50%] flex"><i class="bi bi-clock text-color4"></i><p class="text-color6 ms-2">6 Дней</p></div>
+                                <div class="w-[50%] flex"><i class="bi bi-geo-alt text-color4"></i><p class="text-color6 ms-2">Италия</p></div>
                                 <div class="w-[50%] flex"><i class="bi bi-person text-color4"></i></i><p class="text-color6 ms-2">10+</p></div>
-                                <div class="w-[50%] flex"><i class="bi bi-emoji-smile text-color4"></i></i><p class="text-color6 ms-2"> 9.5 Superb</p></div>
+                                <div class="w-[50%] flex"><i class="bi bi-emoji-smile text-color4"></i></i><p class="text-color6 ms-2"> 9.5 Звезд</p></div>
                             </div>
-                            <a href="" class="underline decoration-color1 text-color6 flex mb-2">Tour details</a>
+                            <a href="" class="underline decoration-color1 text-color6 flex mb-2">Тур детали</a>
                         </div>
                         <img src="/static/img/2.jpg" alt="" class="w-[100%] h-[100%] object-cover brightness-75 absolute">
-                        <p class="absolute uppercase text-white bg-color3 px-4 py-1 right-1 top-12 rotate-[-90deg] ">italy</p>
+                        <p class="absolute uppercase text-white bg-color3 px-4 py-1 right-1 top-12 rotate-[-90deg] ">Италия</p>
                         <figcaption class="absolute text-white bottom-8 right-10 fig">
-                            <p class="capitalize font-secondary text-3xl">Roma</p>
-                            <p class="text-right">$1.300 / per persons</p>
+                            <p class="capitalize font-secondary text-3xl">Рим</p>
+                            <p class="text-right">$1.300 / с человека</p>
                         </figcaption>
                     </figure>
                     <figure class="w-full md:w-[45%] xl:w-[30%] h-[450px] relative photo transition-all duration-1000">
                         <div class="w-[100%] h-[100%] bottom-photo absolute bg-white flex flex-col justify-center px-5">
-                            <p class="text-3xl text-color3 capitalize font-secondary">France</p>
-                            <p class="text-color1 mb-4">$400 / per persons</p>
-                            <p class="text-color6">Travel non lorem ac erat susce bibendum nulla facilisi. Sedeuter nunc voluat miss conse viventa amet vestibulum.</p>
+                            <p class="text-3xl text-color3 capitalize font-secondary">Франция</p>
+                            <p class="text-color1 mb-4">$1.400 / с человека</p>
+                            <p class="text-color6">Ваши ожидания не будут обмануты, если вы выберите Францию, страну известную своей модой и кухней, которые точно вас покорят</p>
                             <div class="flex flex-wrap my-4">
-                                <div class="w-[50%] flex"><i class="bi bi-clock text-color4"></i><p class="text-color6 ms-2">10 Days</p></div>
-                                <div class="w-[50%] flex"><i class="bi bi-geo-alt text-color4"></i><p class="text-color6 ms-2">France</p></div>
-                                <div class="w-[50%] flex"><i class="bi bi-person text-color4"></i></i><p class="text-color6 ms-2">6+</p></div>
-                                <div class="w-[50%] flex"><i class="bi bi-emoji-smile text-color4"></i></i><p class="text-color6 ms-2">9.5 Superb</p></div>
+                                <div class="w-[50%] flex"><i class="bi bi-clock text-color4"></i><p class="text-color6 ms-2">4 Дня</p></div>
+                                <div class="w-[50%] flex"><i class="bi bi-geo-alt text-color4"></i><p class="text-color6 ms-2">Франция</p></div>
+                                <div class="w-[50%] flex"><i class="bi bi-person text-color4"></i></i><p class="text-color6 ms-2">12+</p></div>
+                                <div class="w-[50%] flex"><i class="bi bi-emoji-smile text-color4"></i></i><p class="text-color6 ms-2">9.8 Звезд</p></div>
                             </div>
-                            <a href="" class="underline decoration-color1 text-color6 flex mb-2">Tour details</a>
+                            <a href="" class="underline decoration-color1 text-color6 flex mb-2">Тур детали</a>
                         </div>
                         <img src="/static/img/france1.jpg" alt="" class="w-[100%] h-[100%] object-cover brightness-75 absolute">
-                        <p class="absolute uppercase text-white bg-color3 px-4 py-1 right-1 top-12 rotate-[-90deg] ">France</p>
+                        <p class="absolute uppercase text-white bg-color3 px-4 py-1 right-1 top-12 rotate-[-90deg] ">Франция</p>
                         <figcaption class="absolute text-white bottom-8 right-10 fig">
-                            <p class="capitalize font-secondary text-3xl">France</p>
-                            <p class="text-right">$400 / per persons</p>
+                            <p class="capitalize font-secondary text-3xl">Франция</p>
+                            <p class="text-right">$1.400 / с человека</p>
                         </figcaption>
                     </figure>
                     <figure class="w-full md:w-[45%] xl:w-[30%] h-[450px] relative photo transition-all duration-1000 ">
                         <div class="w-[100%] h-[100%] bottom-photo absolute bg-white flex flex-col justify-center px-5">
-                            <p class="text-3xl text-color3 capitalize font-secondary">Greece tour</p>
-                            <p class="text-color1 mb-4">$500 / per persons</p>
-                            <p class="text-color6">Travel non lorem ac erat susce bibendum nulla facilisi. Sedeuter nunc voluat miss conse viventa amet vestibulum.</p>
+                            <p class="text-3xl text-color3 capitalize font-secondary">Греция</p>
+                            <p class="text-color1 mb-4">$1000 / с человека</p>
+                            <p class="text-color6">Это путешествие оставит в вас незабываемые впечатления на всю жизнь -  погрузитесь в магию Греции с нашим захватывающим туром</p>
                             <div class="flex flex-wrap my-4">
-                                <div class="w-[50%] flex"><i class="bi bi-clock text-color4"></i><p class="text-color6 ms-2">10 Days</p></div>
-                                <div class="w-[50%] flex"><i class="bi bi-geo-alt text-color4"></i><p class="text-color6 ms-2">greece</p></div>
+                                <div class="w-[50%] flex"><i class="bi bi-clock text-color4"></i><p class="text-color6 ms-2">10 Дней</p></div>
+                                <div class="w-[50%] flex"><i class="bi bi-geo-alt text-color4"></i><p class="text-color6 ms-2">Греция</p></div>
                                 <div class="w-[50%] flex"><i class="bi bi-person text-color4"></i></i><p class="text-color6 ms-2">12+</p></div>
-                                <div class="w-[50%] flex"><i class="bi bi-emoji-smile text-color4"></i></i><p class="text-color6 ms-2">9.3 Superb</p></div>
+                                <div class="w-[50%] flex"><i class="bi bi-emoji-smile text-color4"></i></i><p class="text-color6 ms-2">9.3 Звезды</p></div>
                             </div>
-                            <a href="" class="underline decoration-color1 text-color6 flex mb-2">Tour details</a>
+                            <a href="" class="underline decoration-color1 text-color6 flex mb-2">Тур детали</a>
                         </div>
                         <img src="/static/img/greece1.jpg" alt="" class="w-[100%] h-[100%] object-cover brightness-75 absolute">
-                        <p class="absolute uppercase text-white bg-color3 px-4 py-1 right-[-15px] top-12 rotate-[-90deg] ">greece</p>
+                        <p class="absolute uppercase text-white bg-color3 px-4 py-1 right-[-15px] top-12 rotate-[-90deg] ">Греция</p>
                         <figcaption class="absolute text-white bottom-8 right-10 fig">
-                            <p class="capitalize font-secondary text-3xl">greece tours</p>
-                            <p class="text-right">$500 / per persons</p>
+                            <p class="capitalize font-secondary text-3xl">Греция тур</p>
+                            <p class="text-right">$1000 / с человека</p>
                         </figcaption>
                     </figure>
                     <figure class="w-full md:w-[45%] xl:w-[30%] h-[450px] relative photo transition-all duration-1000 ">
                         <div class="w-[100%] h-[100%] bottom-photo absolute bg-white flex flex-col justify-center px-5">
-                            <p class="text-3xl text-color3 capitalize font-secondary">Canada tour</p>
-                            <p class="text-color1 mb-4">$300 / per persons</p>
-                            <p class="text-color6">Travel non lorem ac erat susce bibendum nulla facilisi. Sedeuter nunc voluat miss conse viventa amet vestibulum.</p>
+                            <p class="text-3xl text-color3 capitalize font-secondary">Канада тур</p>
+                            <p class="text-color1 mb-4">$2000 / с человека</p>
+                            <p class="text-color6">Приготовьтесь к невероятному путешествию в просторы Канады, где вас ждут захватывающие горные пейзажи, величественные национальные парки и дружелюбные горожане</p>
                             <div class="flex flex-wrap my-4">
-                                <div class="w-[50%] flex"><i class="bi bi-clock text-color4"></i><p class="text-color6 ms-2">7 Days</p></div>
-                                <div class="w-[50%] flex"><i class="bi bi-geo-alt text-color4"></i><p class="text-color6 ms-2">canada</p></div>
+                                <div class="w-[50%] flex"><i class="bi bi-clock text-color4"></i><p class="text-color6 ms-2">7 Дней</p></div>
+                                <div class="w-[50%] flex"><i class="bi bi-geo-alt text-color4"></i><p class="text-color6 ms-2">Канада</p></div>
                                 <div class="w-[50%] flex"><i class="bi bi-person text-color4"></i></i><p class="text-color6 ms-2">10+</p></div>
-                                <div class="w-[50%] flex"><i class="bi bi-emoji-smile text-color4"></i></i><p class="text-color6 ms-2"> 9.3 Superb</p></div>
+                                <div class="w-[50%] flex"><i class="bi bi-emoji-smile text-color4"></i></i><p class="text-color6 ms-2"> 9.3 Звезды</p></div>
                             </div>
-                            <a href="" class="underline decoration-color1 text-color6 flex mb-2">Tour details</a>
+                            <a href="" class="underline decoration-color1 text-color6 flex mb-2">Тур детали</a>
                         </div>
                         <img src="/static/img/canada1.jpg" alt="" class="w-[100%] h-[100%] object-cover brightness-75 absolute">
-                        <p class="absolute uppercase text-white bg-color3 px-4 py-1 right-[-15px] top-12 rotate-[-90deg] ">canada</p>
+                        <p class="absolute uppercase text-white bg-color3 px-4 py-1 right-[-15px] top-12 rotate-[-90deg] ">Канада</p>
                         <figcaption class="absolute text-white bottom-8 right-10 fig">
-                            <p class="capitalize font-secondary text-3xl">canada tours</p>
-                            <p class="text-right">$300 / per persons</p>
+                            <p class="capitalize font-secondary text-3xl">Канада тур</p>
+                            <p class="text-right">$3000 / с человека</p>
                         </figcaption>
                     </figure>
                     <figure class="w-full md:w-[45%] xl:w-[30%] h-[450px] relative photo transition-all duration-1000 ">
                         <div class="w-[100%] h-[100%] bottom-photo absolute bg-white flex flex-col justify-center px-5">
-                            <p class="text-3xl text-color3 capitalize font-secondary">dubai</p>
-                            <p class="text-color1 mb-4">$200 / per persons</p>
-                            <p class="text-color6">Travel non lorem ac erat susce bibendum nulla facilisi. Sedeuter nunc voluat miss conse viventa amet vestibulum.</p>
+                            <p class="text-3xl text-color3 capitalize font-secondary">Дубай</p>
+                            <p class="text-color1 mb-4">$2000 / с человека</p>
+                            <p class="text-color6">Приготовьтесь к невероятному путешествию в Дубай, где современные чудеса и традиции сочетаются в удивительном симбиозе</p>
                             <div class="flex flex-wrap my-4">
-                                <div class="w-[50%] flex"><i class="bi bi-clock text-color4"></i><p class="text-color6 ms-2">7 Days</p></div>
-                                <div class="w-[50%] flex"><i class="bi bi-geo-alt text-color4"></i><p class="text-color6 ms-2">dubai</p></div>
+                                <div class="w-[50%] flex"><i class="bi bi-clock text-color4"></i><p class="text-color6 ms-2">5 Дней</p></div>
+                                <div class="w-[50%] flex"><i class="bi bi-geo-alt text-color4"></i><p class="text-color6 ms-2">Дубай</p></div>
                                 <div class="w-[50%] flex"><i class="bi bi-person text-color4"></i></i><p class="text-color6 ms-2">10+</p></div>
-                                <div class="w-[50%] flex"><i class="bi bi-emoji-smile text-color4"></i></i><p class="text-color6 ms-2">9.8 Superb</p></div>
+                                <div class="w-[50%] flex"><i class="bi bi-emoji-smile text-color4"></i></i><p class="text-color6 ms-2">9.8 Звезд</p></div>
                             </div>
-                            <a href="" class="underline decoration-color1 text-color6 flex mb-2">Tour details</a>
+                            <a href="" class="underline decoration-color1 text-color6 flex mb-2">Тур детали</a>
                         </div>
                         <img src="/static/img/44-1.jpg" alt="" class="w-[100%] h-[100%] object-cover brightness-75 absolute">
-                        <p class="absolute uppercase text-white bg-color3 px-4 py-1 right-[-15px] top-12 rotate-[-90deg] ">dubai</p>
+                        <p class="absolute uppercase text-white bg-color3 px-4 py-1 right-[-15px] top-12 rotate-[-90deg] ">Дубай</p>
                         <figcaption class="absolute text-white bottom-8 right-10 fig">
-                            <p class="capitalize font-secondary text-3xl">dubai</p>
-                            <p class="text-right">$200 / per persons</p>
+                            <p class="capitalize font-secondary text-3xl">Дубай</p>
+                            <p class="text-right">$2000 / с человека</p>
                         </figcaption>
                     </figure>
                 </div>
@@ -309,36 +294,36 @@
                 <div class="flex flex-wrap justify-center xl:justify-between gap-10 px-6 xl:px-0 py-8 lg:px-3 ">
                     <figure class="w-full md:w-[45%] xl:w-[30%] h-[450px] relative  transition-all duration-1000 overflow-hidden group ">
                         <img src="/static/img/canada1-1.jpeg" alt="" class="w-[100%] h-[100%] object-cover group-hover:brightness-75 group-hover:scale-[1.2] absolute transition-all duration-1000">
-                        <p class="absolute uppercase text-white bg-color1 px-4 py-1 right-1 top-12 rotate-[-90deg] ">2 Tours</p>
+                        <p class="absolute uppercase text-white bg-color1 px-4 py-1 right-1 top-12 rotate-[-90deg] ">2 Тура</p>
                         <figcaption class="absolute text-white bottom-[20px] left-5  group-hover:bottom-[50px]  transition-all duration-700 w-full  ">
                             <div class="flex after:contetn-[''] after:h-[1px] after:bg-op-50 after:w-[20%] after:bg-white after:absolute after:bottom-[-8px] group-hover:after:w-[90%]  after:transition-all after:duration-1000" ><i class="bi bi-geo-alt text-2xl text-white me-2"></i> <p class="capitalize font-secondary text-3xl">Canada</p></div>
                             <div class="flex justify-between absolute  mt-5 w-full  ">
-                                <p>2 Tours Package</p>
-                                <a href="" class="flex  me-9 " >Explore<i class="bi bi-arrow-right"></i></a>
+                                <p>2 тура (выгодно)</p>
+                                <a href="" class="flex  me-9 " >-><i class="bi bi-arrow-right"></i></a>
                             </div>
 
                         </figcaption>
                     </figure>
                     <figure class="w-full md:w-[45%] xl:w-[30%] h-[450px] relative  transition-all duration-1000 overflow-hidden group ">
                         <img src="/static/img/maldives1-1.jpeg" alt="" class="w-[100%] h-[100%] object-cover group-hover:brightness-75 group-hover:scale-[1.2] absolute transition-all duration-1000">
-                        <p class="absolute uppercase text-white bg-color1 px-4 py-1 right-1 top-12 rotate-[-90deg] ">2 Tours</p>
+                        <p class="absolute uppercase text-white bg-color1 px-4 py-1 right-1 top-12 rotate-[-90deg] ">3 Тура</p>
                         <figcaption class="absolute text-white bottom-[20px] left-5  group-hover:bottom-[50px]  transition-all duration-700 w-full  ">
                             <div class="flex after:contetn-[''] after:h-[1px] after:bg-op-50 after:w-[20%] after:bg-white after:absolute after:bottom-[-8px] group-hover:after:w-[90%]  after:transition-all after:duration-1000" ><i class="bi bi-geo-alt text-2xl text-white me-2"></i> <p class="capitalize font-secondary text-3xl">Maldives</p></div>
                             <div class="flex justify-between absolute  mt-5 w-full  ">
-                                <p>2 Tours Package</p>
-                                <a href="" class="flex  me-9  " >Explore<i class="bi bi-arrow-right"></i></a>
+                                <p>3 тура (акция)</p>
+                                <a href="" class="flex  me-9  " >-><i class="bi bi-arrow-right"></i></a>
                             </div>
 
                         </figcaption>
                     </figure>
                     <figure class="w-full md:w-[45%] xl:w-[30%] h-[450px] relative  transition-all duration-1000 overflow-hidden group ">
                         <img src="/static/img/italy1.jpeg" alt="" class="w-[100%] h-[100%] object-cover group-hover:brightness-75 group-hover:scale-[1.2] absolute transition-all duration-1000">
-                        <p class="absolute uppercase text-white bg-color1 px-4 py-1 right-1 top-12 rotate-[-90deg] ">6 Tours</p>
+                        <p class="absolute uppercase text-white bg-color1 px-4 py-1 right-1 top-12 rotate-[-90deg] ">2 Тура</p>
                         <figcaption class="absolute text-white bottom-[20px] left-5  group-hover:bottom-[50px]  transition-all duration-700 w-full  ">
                             <div class="flex after:contetn-[''] after:h-[1px] after:bg-op-50 after:w-[20%] after:bg-white after:absolute after:bottom-[-8px] group-hover:after:w-[90%]  after:transition-all after:duration-1000" ><i class="bi bi-geo-alt text-2xl text-white me-2"></i> <p class="capitalize font-secondary text-3xl">Italy</p></div>
                             <div class="flex justify-between absolute  mt-5 w-full  ">
-                                <p>6 Tours Package</p>
-                                <a href="" class="flex me-9 " >Explore<i class="bi bi-arrow-right"></i></a>
+                                <p>2 тура (даром)</p>
+                                <a href="" class="flex me-9 " >-><i class="bi bi-arrow-right"></i></a>
                             </div>
 
                         </figcaption>
@@ -428,16 +413,16 @@
                 <div class="w-full md:w-[30%] flex flex-col py-2  my-5 md:ps-20 px-6 " >
                     <p class="font-secondary text-white text-xl xl:text-2xl">Быстрые ссылки</p>
                     <ul class="mt-7 px-6">
-                        <li class="my-2 list-disc marker:text-color1"><a href="" class="text-color6">Туры</a></li>
-                        <li class="list-disc marker:text-color1"><a href=""  class="text-color6">Регистрация</a></li>
-                        <li class="my-2 list-disc marker:text-color1"><a href=""  class="text-color6">Авторизация</a></li>
+                        <li class="my-2 list-disc marker:text-color1"><a href="/tours" class="text-color6">Туры</a></li>
+                        <li class="list-disc marker:text-color1"><a href="/registration"  class="text-color6">Регистрация</a></li>
+                        <li class="my-2 list-disc marker:text-color1"><a href="/login"  class="text-color6">Авторизация</a></li>
                     </ul>
                 </div>
                 <div class="w-full md:w-[28%] flex flex-col  py-2 my-5 px-6 md:px-0 " >
                     <p class="font-secondary text-2xl text-white ">Отзовик</p>
                     <p class="text-color6 mt-5">Мы интересуемся вашим мнением - даже без аккаунта вы можете оставить свой отзыв</p>
-                    <form action="" class="mt-5 flex w-full flex-wrap"><input type="text" placeholder="Отзыв" class="px-2 py-5">
-                        <a href="" class="text-white bg-color4 py-5 px-3 flex mt-0 md:mt-2 lg:mt-0">Отправить</a></form>
+                    <form action="/reviews" type="post" class="mt-5 flex w-full flex-wrap"><input type="text" placeholder="Отзыв" class="px-2 py-5">
+                        <button type = "submit" class="text-white bg-color4 py-5 px-3 flex mt-0 md:mt-2 lg:mt-0">Отправить</button></form>
                 </div>
             </div>
             <p class="text-stone-300 text-left py-5  text-[14px] relative before:content-[''] before:h-[3px] before:w-[100%] before:bg-stone-400 before:absolute before:top-0 before:bg-opacity-50">©2023 Марина Котова. ПрогСП - 3 курс 1 сем, курсовой проект, WebApp Java Spring MVC Hibernate JSP MySQL.</p>
