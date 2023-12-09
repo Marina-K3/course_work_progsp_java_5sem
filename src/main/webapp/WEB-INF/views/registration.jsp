@@ -49,18 +49,19 @@
         <section class="w-full justify-center mt-[80px] hidden lg:flex relative">
             <div class=" bg-white bg-opacity-40 container absolute w-[1000px] xl:w-[1200px] h-[100px] flex justify-center items-center backdrop-blur-lg" style="height: 200px; margin: 10px">
                 <div class="w-[950px] xl:w-[1100px]  container h-auto absolute m-[10px] " style="height: 200px; margin: 10px">
-                    <form action="/login" method="post" class="flex font-primary" style="margin-top: 45px">
+                    <form action="/registration" method="post" class="flex font-primary" style="margin-top: 45px">
+                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
                         <div style="display: flex; flex-direction: column; flex-grow: 1; ">
                             <div style="display: flex; flex-direction: row;">
                                 <p class="py-[15px] ps-5 w-[25%] outline-none focus:outline-none" style="padding-left: 10px;">нет аккаунта? - тогда вам сюда</p>
-                                <input type="text" name="last_name" placeholder="Фамилия" class="w-[25%] py-[15px] bg-white  ps-" style="padding-left: 10px;" required>
-                                <input type="text" name="first_name" placeholder="Имя" class="w-[25%] py-[15px] bg-white  ps-" style="padding-left: 10px; " required>
-                                <input type="text" name="passport_number" placeholder="Номер паспорта" class="w-[25%] py-[15px] bg-white  ps-" style="padding-left: 10px; " required>
+                                <input type="text" name="lastName" placeholder="Фамилия" class="w-[25%] py-[15px] bg-white  ps-" style="padding-left: 10px;" required>
+                                <input type="text" name="firstName" placeholder="Имя" class="w-[25%] py-[15px] bg-white  ps-" style="padding-left: 10px; " required>
+                                <input type="text" name="passportNumber" placeholder="Номер паспорта" class="w-[25%] py-[15px] bg-white  ps-" style="padding-left: 10px; " required>
                             </div>
                             <div style="display: flex; flex-direction: row;">
-                                <input type = "email"   name="email" placeholder="Email" class="w-[25%] py-[15px] bg-white  ps-" style="padding-left: 10px; ">
-                                <input type="tel" name="phone" placeholder="Телефон" required class="w-[25%] py-[15px] bg-white  ps-" style="padding-left: 10px; ">
-                                <input type="password"  name="password" placeholder="Пароль" class="w-[25%] py-[15px] bg-white  ps-" style="padding-left: 10px; ">
+                                <input type = "email"   name="email" placeholder="Email" class="w-[25%] py-[15px] bg-white  ps-" style="padding-left: 10px; " required>
+                                <input type="tel" name="phone" placeholder="Телефон" required class="w-[25%] py-[15px] bg-white  ps-" style="padding-left: 10px; " required>
+                                <input type="password"  name="password" placeholder="Пароль" class="w-[25%] py-[15px] bg-white  ps-" style="padding-left: 10px; " required>
                                 <button type="submit" class="bg-color1 w-[25%] text-white flex items-center justify-center text-[18px] hover:bg-color3 transition-all duration-500" style="padding-left: 10px; flex-grow: 1; width: 25%;" ><i class="bi bi-person me-2"></i>Регистрация</button>
                             </div>
                         </div>

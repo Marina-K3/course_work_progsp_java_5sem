@@ -3,6 +3,11 @@ import bsuir_ief_172303_kotova.models.User;
 import bsuir_ief_172303_kotova.services.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,6 +15,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 import java.io.IOException;
 import java.security.Principal;
@@ -23,26 +31,12 @@ public class UserController {
    // private final FlightService flightService;
 
     // общие (авторизация и регистрация(пользователя))
-    @GetMapping("/login")
-    public String login(Principal principal, Model model) {
-        model.addAttribute("user",userService.getUserByPrincipal(principal));
+    @GetMapping("/log")
+    public String login() {
         return "login";
     }
 
 
-    @PostMapping("/login")
-    public String loginUser(@RequestParam("email") String email, @RequestParam("password") String password) {
-        if (userService.authenticateUser(email, password)) {
-            User user = userService.getUserByEmail(email);
-            if (user.getRole().equals("ADMIN")) {
-                return "redirect:/admin";
-            } else {
-                return "redirect:/profile";
-            }
-        } else {
-            return "redirect:/?error";
-        }
-    }
 
     @GetMapping("/registration")
     public String registration(Principal principal, Model model) {
@@ -59,16 +53,33 @@ public class UserController {
         return "redirect:/";
     }
 
-// контроллеры для пользователя
-
     @GetMapping("/profile")
-    @PreAuthorize("hasRole('USER')")
-    public String profile(Principal principal,
-                          Model model) {
-        User user = userService.getUserByPrincipal(principal);
-        model.addAttribute("user", user);
-        return "profile";
+    public String showProfile(Authentication authentication) {
+        if (authentication != null && authentication.isAuthenticated()) {
+            if (authentication.getAuthorities().stream()
+                    .anyMatch(auth -> auth.getAuthority().equals("ROLE_ADMIN"))) {
+                return "redirect:/admin/profile";
+            } else if (authentication.getAuthorities().stream()
+                    .anyMatch(auth -> auth.getAuthority().equals("ROLE_USER"))) {
+                return "redirect:/user/profile";
+            }
+        }
+        return "redirect:/login";
     }
+
+    @GetMapping("/admin/profile")
+    public String showAdminProfile() {
+        return "admin";
+    }
+
+
+    @GetMapping("/user/profile")
+    public String showUserProfile() {
+        return "user";
+    }
+
+
+
     @GetMapping("/user/{user}")
     @PreAuthorize("hasRole('USER')")
     public String userInfo(@PathVariable("user") User user, Model model, Principal principal) {
@@ -86,7 +97,6 @@ public class UserController {
     }
 
     @PostMapping("/user/edit")
-    @PreAuthorize("hasRole('USER')")
     public String userEdit(@RequestParam("userId") Long id,
                            @RequestParam("firstName") String firstName,
                            @RequestParam("lastName") String lastName,
@@ -99,16 +109,8 @@ public class UserController {
 
 // для администратора
 
-    @GetMapping("/admin")
-    @PreAuthorize("hasRole('ADMIN')")
-    public String admin(Model model, Principal principal){
-        model.addAttribute("users",userService.list());
-        model.addAttribute("user",userService.getUserByPrincipal(principal));
-        return "admin";
-    }
 
     @PostMapping("/admin/user/ban/{id}")
-    @PreAuthorize("hasRole('ADMIN')")
     public  String userBan(@PathVariable("id") Long id){
         userService.banUser(id);
         return "redirect:/admin";

@@ -25,33 +25,21 @@ import java.util.stream.Collectors;
 @Slf4j
 @RequiredArgsConstructor
 @Service
-public class UserService implements UserDetailsService {
+public class UserService {
     private final UserRepository userRepository;
 
     private final PasswordEncoder passwordEncoder;
 
 
 
-    @Override
-    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        User user = userRepository.findByEmail(email);
-        if (user == null) {
-            throw new UsernameNotFoundException("User not found");
-        }
-        return org.springframework.security.core.userdetails.User
-                .withUsername(user.getEmail())
-                .password(user.getPassword())
-                .roles(user.getRole())
-                .build();
 
-    }
 
 
     public boolean createUser(User user){
         String userEmail = user.getEmail();
         if (userRepository.findByEmail(userEmail) != null) return false;
         user.setActive(true);
-        user.setRole("USER");
+        user.setRole("ADMIN");
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         log.info("Saving new User with email: {}", userEmail);
         userRepository.save(user);

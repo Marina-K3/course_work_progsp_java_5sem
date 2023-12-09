@@ -1,11 +1,7 @@
 package bsuir_ief_172303_kotova.config;
-
 import bsuir_ief_172303_kotova.services.CustomUserDetailsService;
-import bsuir_ief_172303_kotova.services.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -13,6 +9,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 import org.springframework.web.client.RestTemplate;
 
 
@@ -28,14 +25,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
+
                 .authorizeRequests()
-                    .antMatchers("/", "/tours", "/about", "/registration","/login","/contacts",  "/static/**", "/css/**", "/js/**", "/font/**", "/img/**").permitAll()
-                    .antMatchers("/profile").hasRole("USER") // Требовать роль USER для доступа к /profile
-                    .antMatchers("/admin").hasRole("ADMIN") // Требовать роль ADMIN для доступа к /admin
+                    .antMatchers("/", "/tours", "/about", "/registration","/log","/contacts",  "/static/**", "/css/**", "/js/**", "/font/**", "/img/**").permitAll()
+                    .antMatchers("/user/**").hasRole("USER") // Требовать роль USER для доступа к /profile
+                    .antMatchers("/admin/**").hasRole("ADMIN") // Требовать роль ADMIN для доступа к /admin
                     .anyRequest().authenticated()
                 .and()
                 .formLogin()
-                    .loginPage("/login")
+                    .loginPage("/log")
+                     .usernameParameter("email") // Параметр имени пользователя в форме входа
+                     .passwordParameter("password") // Параметр пароля в форме входа
+                    .defaultSuccessUrl("/profile")
                     .permitAll()
                 .and()
                 .logout()
@@ -47,8 +48,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsService)
-                .passwordEncoder(passwordEncoder());
+        auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
     }
 
     @Bean
@@ -56,8 +56,4 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder(9);
     }
 
-    @Bean
-    public RestTemplate restTemplate() {
-        return new RestTemplate();
-    }
 }
