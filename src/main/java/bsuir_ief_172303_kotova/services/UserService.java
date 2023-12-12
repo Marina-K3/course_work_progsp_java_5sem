@@ -30,16 +30,11 @@ public class UserService {
 
     private final PasswordEncoder passwordEncoder;
 
-
-
-
-
-
     public boolean createUser(User user){
         String userEmail = user.getEmail();
         if (userRepository.findByEmail(userEmail) != null) return false;
         user.setActive(true);
-        user.setRole("ADMIN");
+        user.setRole("USER");
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         log.info("Saving new User with email: {}", userEmail);
         userRepository.save(user);
@@ -70,13 +65,14 @@ public class UserService {
         return userRepository.findByEmail(principal.getName());
     }
 
-    public void editUser(Long id, String firstName,String lastName, String passNumber, String email, String numberPhone){
-        User user = userRepository.getUserById(id);
+    public void editUser(Principal principal, String firstName,String lastName, String passNumber, String password, String email, String numberPhone){
+        User user = userRepository.findByEmail(principal.getName());
         user.setFirstName(firstName);
         user.setLastName(lastName);
         user.setPassportNumber(passNumber);
         user.setEmail(email);
         user.setPhone(numberPhone);
+        user.setPassword(password);
         userRepository.save(user);
     }
 

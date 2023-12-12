@@ -30,4 +30,9 @@ public class HomeController {
         return "contacts";
     }
 
+    @GetMapping("/logout")
+    public String logout() {
+        return "home";
+    }
+
 }

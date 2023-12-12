@@ -68,17 +68,33 @@ public class UserController {
     }
 
     @GetMapping("/admin/profile")
-    public String showAdminProfile() {
+    public String showAdminProfile(Model model, Principal principal) {
+
+        model.addAttribute("admin",userService.getUserByPrincipal(principal));
+
         return "admin";
     }
 
 
     @GetMapping("/user/profile")
-    public String showUserProfile() {
+    public String showUserProfile(Model model, Principal principal) {
+
+        model.addAttribute("user",userService.getUserByPrincipal(principal));
+
         return "user";
     }
 
-
+    @PostMapping("/editProfile")
+    public String profileEdit( Principal principal,
+                               @RequestParam("firstName") String firstName,
+                               @RequestParam("lastName") String lastName,
+                               @RequestParam("passportNumber") String passNumber,
+                               @RequestParam("password") String password,
+                               @RequestParam("email") String email,
+                               @RequestParam("phone") String numberPhone){
+        userService.editUser(principal,firstName, lastName, passNumber, password,email,numberPhone);
+        return "redirect:/profile";
+    }
 
     @GetMapping("/user/{user}")
     @PreAuthorize("hasRole('USER')")
@@ -96,16 +112,6 @@ public class UserController {
         return "user-edit";
     }
 
-    @PostMapping("/user/edit")
-    public String userEdit(@RequestParam("userId") Long id,
-                           @RequestParam("firstName") String firstName,
-                           @RequestParam("lastName") String lastName,
-                           @RequestParam("passNumber") String passNumber,
-                           @RequestParam("email") String email,
-                           @RequestParam("numberPhone") String numberPhone){
-        userService.editUser(id,firstName, lastName, passNumber,email,numberPhone);
-        return "redirect:/profile";
-    }
 
 // для администратора
 
