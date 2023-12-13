@@ -1,13 +1,9 @@
 package bsuir_ief_172303_kotova.controllers;
 import bsuir_ief_172303_kotova.models.User;
-import bsuir_ief_172303_kotova.services.UserService;
+import bsuir_ief_172303_kotova.services.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,9 +11,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
 
 import java.io.IOException;
 import java.security.Principal;
@@ -27,8 +20,12 @@ import java.security.Principal;
 //для просто пользователя и админа
 public class UserController {
     private final UserService userService;
-   // private final CountryService countryService;
-   // private final FlightService flightService;
+    private final CountryService countryService;
+    private final CityService cityService;
+
+    private final HotelService hotelService;
+
+    private final FlightService flightService;
 
     // общие (авторизация и регистрация(пользователя))
     @GetMapping("/log")
@@ -173,6 +170,27 @@ public class UserController {
         return "data";
     }
 
+    @GetMapping("/admin/locations")
+    public  String locations(Model model){
+        model.addAttribute("cities", cityService.listCity());
+        model.addAttribute("countries", countryService.listCountry());
+        return "locations";
+    }
+    @GetMapping("/admin/flights")
+    public  String flights(Model model){
+        model.addAttribute("flights", flightService.listFlight());
+        return "flights";
+    }
+    @GetMapping("/admin/hotels")
+    public  String hotels(Model model){
+        model.addAttribute("hotels", hotelService.listHotel());
+        return "hotels";
+    }
+
+    @GetMapping("/admin/tours")
+    public  String tours(Model model){
+        return "admin-tours";
+    }
 
 
 

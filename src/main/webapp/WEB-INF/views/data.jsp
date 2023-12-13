@@ -29,6 +29,8 @@
                         <li class="list-none  "><a class="decoration-none text-white hover:text-color3 transition-all duration-500"
                                                    href="/">Главная</a></li>
                         <li class="list-none"><a class="decoration-none text-white  hover:text-color3 transition-all duration-500"
+                                                 href="/admin/profile">Назад</a></li>
+                        <li class="list-none"><a class="decoration-none text-white  hover:text-color3 transition-all duration-500"
                                                  href="/logout">Выйти</a></li>
                     </ul>
                 </nav>
@@ -38,74 +40,41 @@
         </section>
         <section class="w-full flex justify-center mt-[180px]" style="margin-top: 5px">
             <div class="w-[700px] md:w-[900px] container h-auto  ">
-                <h2 class="w-full text-center uppercase text-white tracking-widest [word-spacing:8px] mb-4" style="font-size: 25px">${admin.firstName}, здравствуйте!</h2>
-                <h2 class="w-full text-center text-white text-5xl md:text-7xl font-secondary uppercase tracking-widest">МЕНЮ <span class="travol">Администратора</span></h2>
-            </div>
-        </section>
-        <section class="w-full justify-center mt-[80px] hidden lg:flex relative" style="margin-top: 30px">
-            <div class=" bg-white bg-opacity-40 container absolute w-[1000px] xl:w-[1200px] h-[100px] flex justify-center items-center backdrop-blur-lg" style="height: 200px; margin: 10px">
-                <div class="w-[950px] xl:w-[1100px]  container h-auto absolute m-[10px]"  style="height: 200px; margin: 10px">
-                    <form action="/editProfile" method="post" class="flex font-primary" style="margin-top: 45px">
-                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
-                        <div style="display: flex; flex-direction: column; flex-grow: 1; ">
-                            <div style="display: flex; flex-direction: row;">
-                                <p class="py-[15px] ps-5 w-[25%] outline-none focus:outline-none" style="padding-left: 10px;">Можете изменить данные профиля</p>
-                                <input type="text" name="lastName" placeholder="Фамилия" class="w-[25%] py-[15px] bg-white  ps-" style="padding-left: 10px;" required value="${admin.lastName}">
-                                <input type="text" name="firstName" placeholder="Имя" class="w-[25%] py-[15px] bg-white  ps-" style="padding-left: 10px; " required value="${admin.firstName}">
-                                <input type="text" name="passportNumber" placeholder="Номер паспорта" class="w-[25%] py-[15px] bg-white  ps-" style="padding-left: 10px; " required value="${admin.passportNumber}">
-                            </div>
-                            <div style="display: flex; flex-direction: row;">
-                                <input type = "email"   name="email" placeholder="Email" class="w-[25%] py-[15px] bg-white  ps-" style="padding-left: 10px; " required value="${admin.email}">
-                                <input type="tel" name="phone" placeholder="Телефон" required class="w-[25%] py-[15px] bg-white  ps-" style="padding-left: 10px; " required value="${admin.phone}">
-                                <input type="password"  name="password" placeholder="Пароль" class="w-[25%] py-[15px] bg-white  ps-" style="padding-left: 10px; " required>
-                                <button type="submit" class="bg-color1 w-[25%] text-white flex items-center justify-center text-[18px] hover:bg-color3 transition-all duration-500" style="padding-left: 10px; flex-grow: 1; width: 25%;" ><i class="bi bi-pen"></i> Редактировать</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
+                <h2 class="w-full text-center text-white text-5xl md:text-7xl font-secondary uppercase tracking-widest">МЕНЮ <span class="travol">Данных</span></h2>
             </div>
         </section>
         <section class="w-full flex justify-center mt-[180px]" style="margin-top: 230px">
             <div class="w-full container 2xl:px-36 flex flex-wrap relative z-10 justify-center md:justify-between">
 
                 <div class="w-full md:w-[20%] my-5 ">
-                    <a href="/admin/users">
+                    <a href="/admin/locations">
                         <figure class="flex flex-col items-center  group">
-                            <div class="bg-white bg-opacity-50  rounded-[50%] p-5 flex items-center relative overflow-hidden outline outline-8  outline-offset-8 out  "><i class="bi bi-person-fill-gear text-5xl text-white absolute ms-[-100%] group-hover:ms-[0%] transition-all duration-300"></i><i class="bi bi-person-fill-gear text-5xl text-white  group-hover:ms-[200%] transition-all duration-300"></i></div>
-                            <figcaption class="text-center text-white font-secondary mt-10"><p class="text-3xl">Работа</p><p class="text-xl">с пользователями</p></figcaption>
+                            <div class="bg-white bg-opacity-50  rounded-[50%] p-5 flex items-center relative overflow-hidden outline outline-8  outline-offset-8 out  "><i class="bi bi-geo-alt text-5xl text-white absolute ms-[-100%] group-hover:ms-[0%] transition-all duration-300"></i><i class="bi bi-geo-alt text-5xl text-white  group-hover:ms-[200%] transition-all duration-300"></i></div>
+                            <figcaption class="text-center text-white font-secondary mt-10"><p class="text-3xl">Страны/Города</p></figcaption>
                         </figure>
                     </a>
                 </div>
                 <div class="w-full md:w-[20%] my-5">
-                    <a href="/admin/data">
+                    <a href="/admin/hotels">
                         <figure class="flex flex-col items-center  group">
-                            <div class="bg-white bg-opacity-50  rounded-[50%] p-5 flex items-center relative overflow-hidden outline outline-8  outline-offset-8 out  "><i class="bi bi-database-fill-gear text-5xl text-white absolute ms-[-100%] group-hover:ms-[0%] transition-all duration-300"></i><i class="bi bi-database-fill-gear text-5xl text-white  group-hover:ms-[200%] transition-all duration-300"></i></div>
-                            <figcaption class="text-center text-white font-secondary mt-10"><p class="text-3xl">Работа</p><p class="text-xl">с данными</p></figcaption>
+                            <div class="bg-white bg-opacity-50  rounded-[50%] p-5 flex items-center relative overflow-hidden outline outline-8  outline-offset-8 out  "><i class="bi bi-building text-5xl text-white absolute ms-[-100%] group-hover:ms-[0%] transition-all duration-300"></i><i class="bi bi-building text-5xl text-white  group-hover:ms-[200%] transition-all duration-300"></i></div>
+                            <figcaption class="text-center text-white font-secondary mt-10"><p class="text-3xl">Отели</p></figcaption>
                         </figure>
                     </a>
                 </div>
                 <div class="w-full md:w-[20%] my-5">
-                    <a href="/admin/orders">
+                    <a href="/admin/flights">
                         <figure class="flex flex-col items-center  group">
-                            <div class="bg-white bg-opacity-50  rounded-[50%] p-5 flex items-center relative overflow-hidden outline outline-8  outline-offset-8 out  "><i class="bi bi-cart4 text-5xl text-white absolute ms-[-100%] group-hover:ms-[0%] transition-all duration-300"></i><i class="bi bi-cart4 text-5xl text-white  group-hover:ms-[200%] transition-all duration-300"></i></div>
-                            <figcaption class="text-center text-white font-secondary mt-10"><p class="text-3xl">Корзина</p><p class="text-xl">заказов</p></figcaption>
+                            <div class="bg-white bg-opacity-50  rounded-[50%] p-5 flex items-center relative overflow-hidden outline outline-8  outline-offset-8 out  "><i class="bi bi-airplane text-5xl text-white absolute ms-[-100%] group-hover:ms-[0%] transition-all duration-300"></i><i class="bi bi-airplane text-5xl text-white  group-hover:ms-[200%] transition-all duration-300"></i></div>
+                            <figcaption class="text-center text-white font-secondary mt-10"><p class="text-3xl">Рейсы</p></figcaption>
                         </figure>
                     </a>
                 </div>
                 <div class="w-full md:w-[20%] my-5">
-                    <a href="/admin/comments">
+                    <a href="/admin/tours">
                         <figure class="flex flex-col items-center  group">
-                            <div class="bg-white bg-opacity-50  rounded-[50%] p-5 flex items-center relative overflow-hidden outline outline-8  outline-offset-8 out  "><i class="bi bi-chat-left-text text-5xl text-white absolute ms-[-100%] group-hover:ms-[0%] transition-all duration-300"></i><i class="bi bi-chat-left-text text-5xl text-white  group-hover:ms-[200%] transition-all duration-300"></i></div>
-                            <figcaption class="text-center text-white font-secondary mt-10"><p class="text-3xl">Отзывы</p><p class="text-xl">пользователей</p></figcaption>
-                        </figure>
-                    </a>
-                </div>
-
-                <div class="w-full md:w-[20%] my-5">
-                    <a href="/admin/statistics">
-                        <figure class="flex flex-col items-center  group">
-                            <div class="bg-white bg-opacity-50  rounded-[50%] p-5 flex items-center relative overflow-hidden outline outline-8  outline-offset-8 out  "><i class="bi bi-clipboard-data text-5xl text-white absolute ms-[-100%] group-hover:ms-[0%] transition-all duration-300"></i><i class="bi bi-clipboard-data text-5xl text-white  group-hover:ms-[200%] transition-all duration-300"></i></div>
-                            <figcaption class="text-center text-white font-secondary mt-10"><p class="text-3xl">Просмотр</p><p class="text-xl">статистики</p></figcaption>
+                            <div class="bg-white bg-opacity-50  rounded-[50%] p-5 flex items-center relative overflow-hidden outline outline-8  outline-offset-8 out  "><i class="bi bi-luggage-fill text-5xl text-white absolute ms-[-100%] group-hover:ms-[0%] transition-all duration-300"></i><i class="bi bi-luggage-fill text-5xl text-white  group-hover:ms-[200%] transition-all duration-300"></i></div>
+                            <figcaption class="text-center text-white font-secondary mt-10"><p class="text-3xl">Туры</p></figcaption>
                         </figure>
                     </a>
                 </div>
