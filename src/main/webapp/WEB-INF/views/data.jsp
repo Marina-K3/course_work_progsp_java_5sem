@@ -38,12 +38,12 @@
 
 
         </section>
-        <section class="w-full flex justify-center mt-[180px]" style="margin-top: 5px">
+        <section class="w-full flex justify-center mt-[180px]" style="margin-top: 100px">
             <div class="w-[700px] md:w-[900px] container h-auto  ">
                 <h2 class="w-full text-center text-white text-5xl md:text-7xl font-secondary uppercase tracking-widest">МЕНЮ <span class="travol">Данных</span></h2>
             </div>
         </section>
-        <section class="w-full flex justify-center mt-[180px]" style="margin-top: 230px">
+        <section class="w-full flex justify-center mt-[180px]" style="margin-top: 130px">
             <div class="w-full container 2xl:px-36 flex flex-wrap relative z-10 justify-center md:justify-between">
 
                 <div class="w-full md:w-[20%] my-5 ">

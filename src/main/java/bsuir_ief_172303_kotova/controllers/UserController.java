@@ -27,6 +27,9 @@ public class UserController {
 
     private final FlightService flightService;
 
+    private final TourService tourService;
+
+
     // общие (авторизация и регистрация(пользователя))
     @GetMapping("/log")
     public String login() {
@@ -189,6 +192,7 @@ public class UserController {
 
     @GetMapping("/admin/tours")
     public  String tours(Model model){
+        model.addAttribute("tours", tourService.listTour());
         return "admin-tours";
     }
 

@@ -27,7 +27,7 @@ public class TourService {
 
     private final UserRepository userRepository;
 
-    public List<Tour> listTours(){
+    public List<Tour> listTour(){
         return tourRepository.findAll();
     }
 
