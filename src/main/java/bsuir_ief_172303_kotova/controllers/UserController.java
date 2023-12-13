@@ -47,8 +47,17 @@ public class UserController {
     @PostMapping("/registration")
     public String createUser(User user, Model model) throws IOException {
         if (!userService.createUser(user)) {
-            model.addAttribute("errorMessage", "Пользователь с email: " + user.getEmail() + " уже существует");
+            model.addAttribute("errorMessage", "Пользователь с этим email " + user.getEmail() + " уже существует");
             return "registration";
+        }
+        return "redirect:/";
+    }
+
+
+    @PostMapping("/admin/createUser")
+    public String AdminCreateUser(User user, Model model) throws IOException {
+        if (userService.createUser(user)) {
+            return "redirect:/admin/users";
         }
         return "redirect:/";
     }
@@ -70,18 +79,31 @@ public class UserController {
     @GetMapping("/admin/profile")
     public String showAdminProfile(Model model, Principal principal) {
 
-        model.addAttribute("admin",userService.getUserByPrincipal(principal));
+        User user = userService.getUserByPrincipal(principal);
+        if(user.isActive()){
+        model.addAttribute("admin", user);
 
         return "admin";
+        }
+        else{
+            return "redirect:/";
+        }
     }
 
 
     @GetMapping("/user/profile")
     public String showUserProfile(Model model, Principal principal) {
 
-        model.addAttribute("user",userService.getUserByPrincipal(principal));
+        User user = userService.getUserByPrincipal(principal);
+        if(user.isActive()){
+            model.addAttribute("user", user);
 
-        return "user";
+            return "user";
+        }
+        else{
+            return "redirect:/";
+        }
+
     }
 
     @PostMapping("/editProfile")
@@ -115,12 +137,45 @@ public class UserController {
 
 // для администратора
 
-
-    @PostMapping("/admin/user/ban/{id}")
-    public  String userBan(@PathVariable("id") Long id){
-        userService.banUser(id);
-        return "redirect:/admin";
+    @GetMapping("/admin/users")
+    public  String users(Model model){
+        model.addAttribute("users", userService.list());
+        return "users";
     }
+
+    @GetMapping("/admin/users/ban/{id}")
+    public  String userBan(@PathVariable("id") Long id, Model model){
+        userService.banUser(id);
+        model.addAttribute("users", userService.list());
+        return "users";
+    }
+
+
+    @GetMapping("/admin/users/setRole/{id}")
+    public  String userSetRole(@PathVariable("id") Long id, Model model){
+        userService.setRole(id);
+        model.addAttribute("users", userService.list());
+        return "users";
+    }
+
+
+    @GetMapping("/admin/users/info/{id}")
+    public  String userInfo(@PathVariable("id") Long id, Model model){
+        model.addAttribute("user", userService.getUserByID(id));
+        return "user-info";
+    }
+
+
+
+
+    @GetMapping("/admin/data")
+    public  String data(Model model){
+        return "data";
+    }
+
+
+
+
 
     @GetMapping("/admin/addAdmin")
     @PreAuthorize("hasRole('ADMIN')")

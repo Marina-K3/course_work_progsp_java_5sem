@@ -72,7 +72,7 @@ public class UserService {
         user.setPassportNumber(passNumber);
         user.setEmail(email);
         user.setPhone(numberPhone);
-        user.setPassword(password);
+        user.setPassword(passwordEncoder.encode(password));
         userRepository.save(user);
     }
 
@@ -98,6 +98,25 @@ public class UserService {
     public User getUserByEmail(String email) {
         if(userRepository.findByEmail(email)!=null)
             return userRepository.findByEmail(email);
+        else return new User();
+    }
+
+    public void setRole(Long id) {
+
+        User user = userRepository.getUserById(id);
+
+        if(user.getRole().equals("USER")){
+            user.setRole("ADMIN");
+        }
+        else{
+            user.setRole("USER");
+        }
+        userRepository.save(user);
+    }
+
+    public User getUserByID(Long id) {
+        if(userRepository.getUserById(id)!=null)
+            return userRepository.getUserById(id);
         else return new User();
     }
 }
