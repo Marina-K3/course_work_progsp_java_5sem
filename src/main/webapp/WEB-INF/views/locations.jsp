@@ -31,7 +31,7 @@
                         <li class="list-none  "><a class="decoration-none text-white hover:text-color3 transition-all duration-500"
                                                    href="/">Главная</a></li>
                         <li class="list-none  "><a class="decoration-none text-white hover:text-color3 transition-all duration-500"
-                                                   href="/profile">Назад</a></li>
+                                                   href="/admin/data">Назад</a></li>
                         <li class="list-none"><a class="decoration-none text-white  hover:text-color3 transition-all duration-500"
                                                  href="/logout">Выйти</a></li>
                     </ul>
@@ -46,88 +46,60 @@
 
     <%--таблица--%>
     <section class="w-full flex justify-center bg-color3 py-8 h-auto" >
-        <div style="display: flex; justify-content: center; align-items: flex-start;">
-            <table style="width: 90%; border: 0.5px solid white; color: white; text-align: center; font-size: 20px">
+        <div style="display: flex; justify-content: center; align-items: flex-start; width: 73%;">
+            <table style="width: 90%; border: 0.5px solid white; color: white; text-align: center; font-size: 20px; padding-right: 20px">
                 <tr style="padding: 10px;">
-                    <th style="padding: 10px;">Email</th>
-                    <th style="padding: 10px;">Имя</th>
-                    <th style="padding: 10px;">Фамилия</th>
-                    <th style="padding: 10px;">Роль</th>
-                    <th style="padding: 10px;">Бан</th>
+                    <th style="padding: 10px;">Страна</th>
                     <th style="padding: 10px;">Ваши действия</th>
                 </tr>
-                <c:forEach var="user" items="${users}">
+                <tr>
+                    <td colspan="2" style="padding: 10px;">Добавить страну <a href="/admin/locations/addCountry"><i class="bi bi-patch-plus"></i></a>
+                    </td>
+                </tr>
+                <c:forEach var="country" items="${countries}">
                     <tr>
-                        <td style="padding: 10px;">${user.email}</td>
-                        <td style="padding: 10px;">${user.firstName}</td>
-                        <td style="padding: 10px;">${user.lastName}</td>
-                        <td style="padding: 10px;">${user.role}</td>
-                        <td style="padding: 10px;"><c:if test="${user.active}">нет</c:if><c:if test="${!user.active}">да</c:if></td>
+                        <td style="padding: 10px;">${country.name}</td>
                         <td style="padding: 10px;">
-                            <a href="/admin/users/ban/${user.id}"><i class="bi bi-ban"></i></a>
-                            <a href="/admin/users/setRole/${user.id}"><i class="bi bi-flag"></i></a>
-                            <a href="/admin/users/info/${user.id}"><i class="bi bi-patch-question"></i></a>
+                            <a href="/admin/locations/deleteCountry/${country.id}"><i class="bi bi-trash3"></i></a>
+                            <a href="/admin/locations/editCountry/${country.id}"><i class="bi bi-pen"></i></a>
+                            <a href="/admin/locations/addCountry"><i class="bi bi-patch-plus"></i></a>
                         </td>
                     </tr>
                 </c:forEach>
-                <c:if test="${empty users}">
+                <c:if test="${empty countries}">
                     <tr>
-                        <td colspan="6" style="padding: 10px;">Пользователей нет</td>
+                        <td colspan="2" style="padding: 10px;">Стран нет - добавьте</td>
                     </tr>
                 </c:if>
             </table>
-            <table style="width: 90%; border: 0.5px solid white; color: white; text-align: center; font-size: 20px">
+            <table style="width: 90%; border: 0.5px solid white; color: white; text-align: center; font-size: 20px; padding-left: 20px">
                 <tr style="padding: 10px;">
-                    <th style="padding: 10px;">Email</th>
-                    <th style="padding: 10px;">Имя</th>
-                    <th style="padding: 10px;">Фамилия</th>
-                    <th style="padding: 10px;">Роль</th>
-                    <th style="padding: 10px;">Бан</th>
+                    <th style="padding: 10px;">Страна</th>
+                    <th style="padding: 10px;">Город</th>
                     <th style="padding: 10px;">Ваши действия</th>
                 </tr>
-                <c:forEach var="user" items="${users}">
+                <tr>
+                    <td colspan="3" style="padding: 10px;">Добавить город <a href="/admin/locations/addCity"><i class="bi bi-patch-plus"></i></a></td>
+                </tr>
+                <c:forEach var="city" items="${cities}">
                     <tr>
-                        <td style="padding: 10px;">${user.email}</td>
-                        <td style="padding: 10px;">${user.firstName}</td>
-                        <td style="padding: 10px;">${user.lastName}</td>
-                        <td style="padding: 10px;">${user.role}</td>
-                        <td style="padding: 10px;"><c:if test="${user.active}">нет</c:if><c:if test="${!user.active}">да</c:if></td>
+                        <td style="padding: 10px;">${city.country.name}</td>
+                        <td style="padding: 10px;">${city.name}</td>
                         <td style="padding: 10px;">
-                            <a href="/admin/users/ban/${user.id}"><i class="bi bi-ban"></i></a>
-                            <a href="/admin/users/setRole/${user.id}"><i class="bi bi-flag"></i></a>
-                            <a href="/admin/users/info/${user.id}"><i class="bi bi-patch-question"></i></a>
+                            <a href="/admin/locations/deleteCity/${city.id}"><i class="bi bi-ban"></i></a>
+                            <a href="/admin/locations/editCity/${city.id}"><i class="bi bi-flag"></i></a>
                         </td>
                     </tr>
                 </c:forEach>
                 <c:if test="${empty users}">
                     <tr>
-                        <td colspan="6" style="padding: 10px;">Пользователей нет</td>
+                        <td colspan="3" style="padding: 10px;">Городов нет - добавьте</td>
                     </tr>
                 </c:if>
             </table>
         </div>
     </section>
 
-    <section class="w-full flex justify-center bg-color3 py-8 h-auto">
-        <form action="/admin/createUser" method="post"  style="margin-top: 45px; width: 73%">
-            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
-            <div style="display: flex; flex-direction: column; flex-grow: 1; ">
-                <div style="display: flex; flex-direction: row;">
-                    <p class="py-[15px] ps-5 w-[25%] outline-none focus:outline-none" style="padding-left: 10px; font-size: 22px; color: white">Можете создать пользователя</p>
-                    <input type="text" name="lastName" placeholder="Фамилия" class="w-[25%] py-[15px] bg-white  ps-" style="padding-left: 10px;" required >
-                    <input type="text" name="firstName" placeholder="Имя" class="w-[25%] py-[15px] bg-white  ps-" style="padding-left: 10px; " required >
-                    <input type="text" name="passportNumber" placeholder="Номер паспорта" class="w-[25%] py-[15px] bg-white  ps-" style="padding-left: 10px; " required >
-                </div>
-                <div style="display: flex; flex-direction: row;">
-                    <input type = "email"   name="email" placeholder="Email" class="w-[25%] py-[15px] bg-white  ps-" style="padding-left: 10px; " required >
-                    <input type="tel" name="phone" placeholder="Телефон" required class="w-[25%] py-[15px] bg-white  ps-" style="padding-left: 10px; " required >
-                    <input type="password"  name="password" placeholder="Пароль" class="w-[25%] py-[15px] bg-white  ps-" style="padding-left: 10px; " required>
-                    <button type="submit" class="bg-color1 w-[25%] text-white flex items-center justify-center text-[18px] hover:bg-color3 transition-all duration-500" style="padding-left: 10px; flex-grow: 1; width: 25%;" ><i class="bi bi-person me-2"></i> Создать</button>
-                </div>
-            </div>
-        </form>
-
-    </section>
 
     <section class="w-full flex justify-center bg-color7 overflow-hidden  ">
         <div class="w-full container flex whitespace-nowrap overflow-hidden group  ">
