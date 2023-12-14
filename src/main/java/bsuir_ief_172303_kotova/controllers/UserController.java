@@ -34,6 +34,7 @@ public class UserController {
 
     private final TourService tourService;
 
+    private final CommentService commentService;
 
     // общие (авторизация и регистрация(пользователя))
     @GetMapping("/log")
@@ -202,6 +203,19 @@ public class UserController {
     }
 
 
+
+    @GetMapping("/admin/comments")
+    public  String adminComments(Model model){
+        model.addAttribute("comments", commentService.listComment());
+        return "comments";
+    }
+
+
+    @GetMapping("/user/comments")
+    public  String userComments(Model model){
+        model.addAttribute("tours", tourService.listTour());
+        return "admin-tours";
+    }
 
 
     @GetMapping("/admin/addAdmin")
