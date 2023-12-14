@@ -48,14 +48,15 @@
     <section class="w-full flex justify-center bg-color3 py-8 h-auto" >
         <div style="display: flex; justify-content: center; align-items: flex-start; width: 73%;">
             <table style="width: 90%; border: 0.5px solid white; color: white; text-align: center; font-size: 20px; padding-right: 20px">
-                <tr style="padding: 10px;">
-                    <th style="padding: 10px;">Страна</th>
-                    <th style="padding: 10px;">Ваши действия</th>
-                </tr>
                 <tr>
                     <td colspan="2" style="padding: 10px;">Добавить страну <a href="/admin/locations/addCountry"><i class="bi bi-patch-plus"></i></a>
                     </td>
                 </tr>
+                <tr style="padding: 10px;">
+                    <th style="padding: 10px;">Страна</th>
+                    <th style="padding: 10px;">Ваши действия</th>
+                </tr>
+
                 <c:forEach var="country" items="${countries}">
                     <tr>
                         <td style="padding: 10px;">${country.name}</td>
@@ -73,14 +74,15 @@
                 </c:if>
             </table>
             <table style="width: 90%; border: 0.5px solid white; color: white; text-align: center; font-size: 20px; padding-left: 20px">
+                <tr>
+                    <td colspan="3" style="padding: 10px;">Добавить город <a href="/admin/locations/addCity"><i class="bi bi-patch-plus"></i></a></td>
+                </tr>
                 <tr style="padding: 10px;">
                     <th style="padding: 10px;">Страна</th>
                     <th style="padding: 10px;">Город</th>
                     <th style="padding: 10px;">Ваши действия</th>
                 </tr>
-                <tr>
-                    <td colspan="3" style="padding: 10px;">Добавить город <a href="/admin/locations/addCity"><i class="bi bi-patch-plus"></i></a></td>
-                </tr>
+
                 <c:forEach var="city" items="${cities}">
                     <tr>
                         <td style="padding: 10px;">${city.country.name}</td>
