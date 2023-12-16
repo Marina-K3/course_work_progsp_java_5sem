@@ -28,6 +28,10 @@ public class Order {
     @Column(name = "order_date")
     private LocalDate orderDate;
 
+    private int seat;
+
+    private int departure_seat;
+
     private boolean cancelled;
 
     // Геттеры, сеттеры и другие методы

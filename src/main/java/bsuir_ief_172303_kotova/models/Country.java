@@ -20,7 +20,7 @@ public class Country {
 
     private String name;
 
-    @OneToMany(mappedBy = "country", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
+    @OneToMany(mappedBy = "country", fetch = FetchType.EAGER, orphanRemoval = true)
     private List<City> cities;
 
     // Геттеры, сеттеры и другие методы

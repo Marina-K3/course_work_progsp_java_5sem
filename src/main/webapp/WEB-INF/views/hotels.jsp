@@ -50,7 +50,7 @@
             <div style="width: 100%">
                 <table style="width: 100%; border: 0.5px solid white; color: white; text-align: center; font-size: 20px; padding-left: 0px">
                     <tr>
-                        <td colspan="3" style="padding: 10px;">Отели</td>
+                        <td colspan="4" style="padding: 10px;">Отели</td>
                     </tr>
                     <tr style="padding: 10px;">
                         <th style="padding: 10px;">Название</th>

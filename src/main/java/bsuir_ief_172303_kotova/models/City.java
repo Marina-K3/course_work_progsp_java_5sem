@@ -27,15 +27,15 @@ public class City {
     @JoinColumn(name = "country_id")
     private Country country;
 
-    @OneToMany(mappedBy = "departureCity", cascade = CascadeType.REFRESH)
+    @OneToMany(mappedBy = "departureCity", cascade = CascadeType.ALL)
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<Flight> departureFlights;
 
-    @OneToMany(mappedBy = "arrivalCity", cascade = CascadeType.REFRESH)
+    @OneToMany(mappedBy = "arrivalCity", cascade = CascadeType.ALL)
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<Flight> arrivalFlights;
 
-    @OneToMany(mappedBy = "city", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
+    @OneToMany(mappedBy = "city", fetch = FetchType.EAGER, orphanRemoval = true)
     private List<Hotel> hotels;
 
     // Геттеры, сеттеры и другие методы

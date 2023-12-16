@@ -47,7 +47,7 @@
     <%--таблица--%>
     <section class="w-full flex justify-center bg-color3 py-8 h-auto" >
         <div style="display: flex; justify-content: center; align-items: flex-start; width: 73%;">
-            <div style="width: 40%">
+            <div style="width: 40%; padding-right: 5px">
                 <table style="width: 100%; border: 0.5px solid white; color: white; text-align: center; font-size: 20px; padding-right: 0px">
                     <tr>
                         <td colspan="2" style="padding: 10px;">Страны</td>
@@ -79,7 +79,7 @@
                 </form>
 
             </div>
-            <div style="width: 60%">
+            <div style="width: 60%; padding-left: 5px">
                 <table style="width: 100%; border: 0.5px solid white; color: white; text-align: center; font-size: 20px; padding-left: 0px">
                     <tr>
                         <td colspan="3" style="padding: 10px;">Города</td>
