@@ -8,6 +8,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletRequest;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -20,4 +22,18 @@ public class CommentService {
         return commentRepository.findAll();
     }
 
+    public void save(String review, HttpServletRequest request) {
+
+        Comment comment = new Comment();
+
+        System.out.println(comment);
+
+        // заполнить поля:
+        comment.setReview(review);
+        comment.setDate(new Date());
+        comment.setUserAgent(request.getHeader("User-Agent"));
+        comment.setIp(request.getRemoteAddr());
+
+        commentRepository.save(comment);
+    }
 }

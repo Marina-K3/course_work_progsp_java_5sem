@@ -40,10 +40,35 @@
     </section>
 
   </section>
-
+<%--форма создания нового пользователя--%>
+  <section class="w-full flex justify-center bg-color3 py-8 h-auto">
+    <section class="w-full justify-center mt-[80px] hidden lg:flex relative" style="margin-top: 0px">
+      <div class=" bg-white bg-opacity-40 container absolute w-[1000px] xl:w-[1200px] h-[100px] flex justify-center items-center backdrop-blur-lg" style="height: 200px; margin: 10px">
+        <div class="w-[950px] xl:w-[1100px]  container h-auto absolute m-[10px]"  style="height: 200px; margin: 0px">
+      <form action="/admin/createUser" method="post"  style="margin-top: 39px;">
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+        <div style="display: flex; flex-direction: column; flex-grow: 1; ">
+          <div style="display: flex; flex-direction: row;">
+            <p class="py-[15px] ps-5 w-[25%] outline-none focus:outline-none" style="padding-left: 10px; font-size: 19px; color: white">Можете создать пользователя</p>
+            <input type="text" name="lastName" placeholder="Фамилия" class="w-[25%] py-[15px] bg-white  ps-" style="padding-left: 10px;" required >
+            <input type="text" name="firstName" placeholder="Имя" class="w-[25%] py-[15px] bg-white  ps-" style="padding-left: 10px; " required >
+            <input type="text" name="passportNumber" placeholder="Номер паспорта" class="w-[25%] py-[15px] bg-white  ps-" style="padding-left: 10px; " required >
+          </div>
+          <div style="display: flex; flex-direction: row;">
+            <input type = "email"   name="email" placeholder="Email" class="w-[25%] py-[15px] bg-white  ps-" style="padding-left: 10px; " required >
+            <input type="tel" name="phone" placeholder="Телефон" required class="w-[25%] py-[15px] bg-white  ps-" style="padding-left: 10px; " required >
+            <input type="password"  name="password" placeholder="Пароль" class="w-[25%] py-[15px] bg-white  ps-" style="padding-left: 10px; " required>
+            <button type="submit" class="bg-color1 w-[25%] text-white flex items-center justify-center text-[18px] hover:bg-color3 transition-all duration-500" style="padding-left: 10px; flex-grow: 1; width: 25%;" ><i class="bi bi-person me-2"></i> Создать</button>
+          </div>
+        </div>
+      </form>
+    </div>
+    </div>
+    </section>
+  </section>
 
 <%--таблица--%>
-  <section class="w-full flex justify-center bg-color3 py-8 h-auto" >
+  <section class="w-full flex justify-center bg-color3 py-8 h-auto"  style = "padding-top: 220px">
 
       <table style="width: 73%; border: 0.5px solid white; color: white; text-align: center; font-size: 20px">
         <tr style="padding: 10px;">
@@ -76,26 +101,6 @@
       </table>
     </section>
 
-  <section class="w-full flex justify-center bg-color3 py-8 h-auto">
-      <form action="/admin/createUser" method="post"  style="margin-top: 45px; width: 73%">
-        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
-        <div style="display: flex; flex-direction: column; flex-grow: 1; ">
-          <div style="display: flex; flex-direction: row;">
-            <p class="py-[15px] ps-5 w-[25%] outline-none focus:outline-none" style="padding-left: 10px; font-size: 22px; color: white">Можете создать пользователя</p>
-            <input type="text" name="lastName" placeholder="Фамилия" class="w-[25%] py-[15px] bg-white  ps-" style="padding-left: 10px;" required >
-            <input type="text" name="firstName" placeholder="Имя" class="w-[25%] py-[15px] bg-white  ps-" style="padding-left: 10px; " required >
-            <input type="text" name="passportNumber" placeholder="Номер паспорта" class="w-[25%] py-[15px] bg-white  ps-" style="padding-left: 10px; " required >
-          </div>
-          <div style="display: flex; flex-direction: row;">
-            <input type = "email"   name="email" placeholder="Email" class="w-[25%] py-[15px] bg-white  ps-" style="padding-left: 10px; " required >
-            <input type="tel" name="phone" placeholder="Телефон" required class="w-[25%] py-[15px] bg-white  ps-" style="padding-left: 10px; " required >
-            <input type="password"  name="password" placeholder="Пароль" class="w-[25%] py-[15px] bg-white  ps-" style="padding-left: 10px; " required>
-            <button type="submit" class="bg-color1 w-[25%] text-white flex items-center justify-center text-[18px] hover:bg-color3 transition-all duration-500" style="padding-left: 10px; flex-grow: 1; width: 25%;" ><i class="bi bi-person me-2"></i> Создать</button>
-          </div>
-        </div>
-      </form>
-
-  </section>
 
   <section class="w-full flex justify-center bg-color7 overflow-hidden  ">
     <div class="w-full container flex whitespace-nowrap overflow-hidden group  ">
@@ -153,7 +158,9 @@
         <div class="w-full md:w-[28%] flex flex-col  py-2 my-5 px-6 md:px-0 " >
           <p class="font-secondary text-2xl text-white ">Отзовик</p>
           <p class="text-color6 mt-5">Мы интересуемся вашим мнением - даже без аккаунта вы можете оставить свой отзыв</p>
-          <form action="/reviews" type="post" class="mt-5 flex w-full flex-wrap"><input type="text" placeholder="Отзыв" class="px-2 py-5">
+          <form action="/reviews" method="post" class="mt-5 flex w-full flex-wrap">
+            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+            <input type="text" name = "review" placeholder="Отзыв" class="px-2 py-5">
             <button type = "submit" class="text-white bg-color4 py-5 px-3 flex mt-0 md:mt-2 lg:mt-0">Отправить</button></form>
         </div>
       </div>

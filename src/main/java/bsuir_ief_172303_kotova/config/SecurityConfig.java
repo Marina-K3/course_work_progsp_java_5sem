@@ -27,7 +27,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
 
                 .authorizeRequests()
-                    .antMatchers("/", "/tours", "/about", "/registration","/log","/contacts",  "/static/**", "/css/**", "/js/**", "/font/**", "/img/**").permitAll()
+                    .antMatchers("/", "/tours", "/reviews", "/thanks", "/about", "/registration","/log","/contacts",  "/static/**", "/css/**", "/js/**", "/font/**", "/img/**").permitAll()
                     .antMatchers("/user/**").hasRole("USER") // Требовать роль USER для доступа к /profile
                     .antMatchers("/admin/**").hasRole("ADMIN") // Требовать роль ADMIN для доступа к /admin
                     .anyRequest().authenticated()

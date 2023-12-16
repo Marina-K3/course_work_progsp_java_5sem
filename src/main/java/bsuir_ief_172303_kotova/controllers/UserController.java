@@ -218,6 +218,36 @@ public class UserController {
     }
 
 
+
+    @GetMapping("/admin/deleteCountry/{id}")
+    public String deleteCountry(@PathVariable("id") Long id)
+    {
+        countryService.deleteCountry(id);
+        return "redirect:/admin/locations";
+    }
+
+    @PostMapping("/admin/addCountry")
+    public String addCountry(@RequestParam("country") String country)
+    {
+        countryService.saveCountry(country);
+        return "redirect:/admin/locations";
+    }
+    @GetMapping("/admin/deleteCity/{id}")
+    public String deleteCity(@PathVariable("id") Long id)
+    {
+        cityService.deleteCountry(id);
+        return "redirect:/admin/locations";
+    }
+    @PostMapping("/admin/addCity")
+    public String addCity(
+                               @RequestParam("country_in_city") Long country_id,
+                               @RequestParam("city") String city
+                               ){
+        cityService.saveCity(country_id, city);
+        return "redirect:/admin/locations";
+    }
+
+
     @GetMapping("/admin/addAdmin")
     @PreAuthorize("hasRole('ADMIN')")
     public String addAdmin(Model model,Principal principal){

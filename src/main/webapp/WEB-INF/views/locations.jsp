@@ -47,58 +47,77 @@
     <%--таблица--%>
     <section class="w-full flex justify-center bg-color3 py-8 h-auto" >
         <div style="display: flex; justify-content: center; align-items: flex-start; width: 73%;">
-            <table style="width: 90%; border: 0.5px solid white; color: white; text-align: center; font-size: 20px; padding-right: 20px">
-                <tr>
-                    <td colspan="2" style="padding: 10px;">Добавить страну <a href="/admin/locations/addCountry"><i class="bi bi-patch-plus"></i></a>
-                    </td>
-                </tr>
-                <tr style="padding: 10px;">
-                    <th style="padding: 10px;">Страна</th>
-                    <th style="padding: 10px;">Ваши действия</th>
-                </tr>
+            <div style="width: 40%">
+                <table style="width: 100%; border: 0.5px solid white; color: white; text-align: center; font-size: 20px; padding-right: 0px">
+                    <tr>
+                        <td colspan="2" style="padding: 10px;">Страны</td>
+                    </tr>
+                    <tr style="padding: 10px;">
+                        <th style="padding: 10px;">Страна</th>
+                        <th style="padding: 10px;">Удалить?</th>
+                    </tr>
 
-                <c:forEach var="country" items="${countries}">
-                    <tr>
-                        <td style="padding: 10px;">${country.name}</td>
-                        <td style="padding: 10px;">
-                            <a href="/admin/locations/deleteCountry/${country.id}"><i class="bi bi-trash3"></i></a>
-                            <a href="/admin/locations/editCountry/${country.id}"><i class="bi bi-pen"></i></a>
-                            <a href="/admin/locations/addCountry"><i class="bi bi-patch-plus"></i></a>
-                        </td>
-                    </tr>
-                </c:forEach>
-                <c:if test="${empty countries}">
-                    <tr>
-                        <td colspan="2" style="padding: 10px;">Стран нет - добавьте</td>
-                    </tr>
-                </c:if>
-            </table>
-            <table style="width: 90%; border: 0.5px solid white; color: white; text-align: center; font-size: 20px; padding-left: 20px">
-                <tr>
-                    <td colspan="3" style="padding: 10px;">Добавить город <a href="/admin/locations/addCity"><i class="bi bi-patch-plus"></i></a></td>
-                </tr>
-                <tr style="padding: 10px;">
-                    <th style="padding: 10px;">Страна</th>
-                    <th style="padding: 10px;">Город</th>
-                    <th style="padding: 10px;">Ваши действия</th>
-                </tr>
+                    <c:forEach var="country" items="${countries}">
+                        <tr>
+                            <td style="padding: 10px;">${country.name}</td>
+                            <td style="padding: 10px;">
+                                <a href="/admin/deleteCountry/${country.id}"><i class="bi bi-trash3"></i></a>
+                            </td>
+                        </tr>
+                    </c:forEach>
+                    <c:if test="${empty countries}">
+                        <tr>
+                            <td colspan="2" style="padding: 10px;">Стран нет - добавьте</td>
+                        </tr>
+                    </c:if>
+                </table>
 
-                <c:forEach var="city" items="${cities}">
+                <form action="/admin/addCountry" method="post" class="flex font-primary" style="margin-top: 10px">
+                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+                    <input type = "text"   name="country" placeholder="Страна" class="w-[25%] py-[15px] bg-white  ps-" style="padding-left: 10px; width: 50%" required>
+                    <button type="submit" class="bg-color1 w-[25%] text-white flex items-center justify-center text-[18px] hover:bg-color3 transition-all duration-500" style="width: 50%" ><i class="bi bi-plus"></i> Добавить</button>
+                </form>
+
+            </div>
+            <div style="width: 60%">
+                <table style="width: 100%; border: 0.5px solid white; color: white; text-align: center; font-size: 20px; padding-left: 0px">
                     <tr>
-                        <td style="padding: 10px;">${city.country.name}</td>
-                        <td style="padding: 10px;">${city.name}</td>
-                        <td style="padding: 10px;">
-                            <a href="/admin/locations/deleteCity/${city.id}"><i class="bi bi-ban"></i></a>
-                            <a href="/admin/locations/editCity/${city.id}"><i class="bi bi-flag"></i></a>
-                        </td>
+                        <td colspan="3" style="padding: 10px;">Города</td>
                     </tr>
-                </c:forEach>
-                <c:if test="${empty users}">
-                    <tr>
-                        <td colspan="3" style="padding: 10px;">Городов нет - добавьте</td>
+                    <tr style="padding: 10px;">
+                        <th style="padding: 10px;">Страна</th>
+                        <th style="padding: 10px;">Город</th>
+                        <th style="padding: 10px;">Удалить ?</th>
                     </tr>
-                </c:if>
-            </table>
+
+                    <c:forEach var="city" items="${cities}">
+                        <tr>
+                            <td style="padding: 10px;">${city.country.name}</td>
+                            <td style="padding: 10px;">${city.name}</td>
+                            <td style="padding: 10px;">
+                                <a href="/admin/deleteCity/${city.id}"><i class="bi bi-ban"></i></a>
+                            </td>
+                        </tr>
+                    </c:forEach>
+                    <c:if test="${empty cities}">
+                        <tr>
+                            <td colspan="3" style="padding: 10px;">Городов нет - добавьте</td>
+                        </tr>
+                    </c:if>
+                </table>
+
+                <form action="/admin/addCity" method="post" class="flex font-primary"; style="margin-top: 10px">
+                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+                    <select name="country_in_city"  class="w-[25%] py-[15px] bg-white ps-" style="padding-left: 10px; width: 33.3%"  required>
+                        <c:forEach items="${countries}" var="country">
+                            <option value="${country.id}">${country.name}</option>
+                        </c:forEach>
+                    </select>
+                    <input type = "text"   name="city" placeholder="Город" class="w-[25%] py-[15px] bg-white  ps-" style="padding-left: 10px; width: 33.3%" required>
+                    <button type="submit" class="bg-color1 w-[25%] text-white flex items-center justify-center text-[18px] hover:bg-color3 transition-all duration-500" style="width: 33.3%" ><i class="bi bi-plus"></i> Добавить</button>
+                </form>
+
+            </div>
         </div>
     </section>
 
@@ -159,7 +178,9 @@
                 <div class="w-full md:w-[28%] flex flex-col  py-2 my-5 px-6 md:px-0 " >
                     <p class="font-secondary text-2xl text-white ">Отзовик</p>
                     <p class="text-color6 mt-5">Мы интересуемся вашим мнением - даже без аккаунта вы можете оставить свой отзыв</p>
-                    <form action="/reviews" type="post" class="mt-5 flex w-full flex-wrap"><input type="text" placeholder="Отзыв" class="px-2 py-5">
+                    <form action="/reviews" method="post" class="mt-5 flex w-full flex-wrap">
+                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+                        <input type="text" name = "review" placeholder="Отзыв" class="px-2 py-5">
                         <button type = "submit" class="text-white bg-color4 py-5 px-3 flex mt-0 md:mt-2 lg:mt-0">Отправить</button></form>
                 </div>
             </div>

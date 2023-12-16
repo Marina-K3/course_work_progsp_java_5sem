@@ -255,8 +255,9 @@
           <p class="font-secondary text-2xl text-white ">Отзовик</p>
           <p class="text-color6 mt-5">Мы интересуемся вашим мнением - даже без аккаунта вы
             можете оставить свой отзыв</p>
-          <form action="/reviews" type="post" class="mt-5 flex w-full flex-wrap"><input
-                  type="text" placeholder="Отзыв" class="px-2 py-5">
+          <form action="/reviews" method="post" class="mt-5 flex w-full flex-wrap">
+            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+            <input type="text" placeholder="Отзыв" name = "review" class="px-2 py-5">
             <button type="submit"
                     class="text-white bg-color4 py-5 px-3 flex mt-0 md:mt-2 lg:mt-0">Отправить</button>
           </form>

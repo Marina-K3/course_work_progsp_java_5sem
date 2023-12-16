@@ -101,3 +101,11 @@ CREATE TABLE orders (
                         FOREIGN KEY (user_id) REFERENCES users (id),
                         FOREIGN KEY (tour_id) REFERENCES tours (id)
 );
+
+CREATE TABLE comment (
+                         id BIGINT AUTO_INCREMENT PRIMARY KEY,
+                         review VARCHAR(255) NOT NULL,
+                         date DATETIME NOT NULL,
+                         userAgent VARCHAR(255) NOT NULL,
+                         ip VARCHAR(255) NOT NULL
+);

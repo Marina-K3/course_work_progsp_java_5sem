@@ -12,8 +12,6 @@ import java.security.Principal;
 @RequiredArgsConstructor
 public class HomeController {
 
-    private final UserService userService;
-
     @GetMapping("/")
     public String home() {
         return "home";

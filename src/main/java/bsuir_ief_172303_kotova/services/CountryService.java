@@ -19,9 +19,17 @@ public class CountryService {
         return countryRepository.findAll();
     }
 
-    public void saveCountry(Country country, String visa){
-        countryRepository.save(country);
+    public void saveCountry(String country_name){
+        if(countryRepository.findCountryByName(country_name) == null){
+            Country country = new Country();
+            country.setName(country_name);
+            countryRepository.save(country);
+        }
+
     }
 
+    public void deleteCountry(Long id) {
+        countryRepository.deleteById(id);
+    }
 }
 
