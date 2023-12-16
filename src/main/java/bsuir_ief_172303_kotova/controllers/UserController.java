@@ -193,6 +193,7 @@ public class UserController {
     @GetMapping("/admin/hotels")
     public  String hotels(Model model){
         model.addAttribute("hotels", hotelService.listHotel());
+        model.addAttribute("cities", cityService.listCity());
         return "hotels";
     }
 
@@ -214,7 +215,7 @@ public class UserController {
     @GetMapping("/user/comments")
     public  String userComments(Model model){
         model.addAttribute("tours", tourService.listTour());
-        return "admin-tours";
+        return "user-comments";
     }
 
 
@@ -235,7 +236,7 @@ public class UserController {
     @GetMapping("/admin/deleteCity/{id}")
     public String deleteCity(@PathVariable("id") Long id)
     {
-        cityService.deleteCountry(id);
+        cityService.deleteCity(id);
         return "redirect:/admin/locations";
     }
     @PostMapping("/admin/addCity")
@@ -248,23 +249,23 @@ public class UserController {
     }
 
 
-    @GetMapping("/admin/addAdmin")
-    @PreAuthorize("hasRole('ADMIN')")
-    public String addAdmin(Model model,Principal principal){
-        model.addAttribute("users",userService.list());
-        model.addAttribute("user",userService.getUserByPrincipal(principal));
-        return "add-admin";
+
+    @GetMapping("/admin/deleteHotel/{id}")
+    public String deleteHotel(@PathVariable("id") Long id)
+    {
+        hotelService.deleteHotelById(id);
+        return "redirect:/admin/hotels";
     }
 
-    @PostMapping("/admin/createAdmin")
-    @PreAuthorize("hasRole('ADMIN')")
-    public String createAdmin(User user, Model model){
-        if (!userService.createAdmin(user)) {
-            model.addAttribute("errorMessage", "Пользователь с email: " + user.getEmail() + " уже существует");
-            return "add-admin";
-        }
-        return "redirect:/profile";
+    @PostMapping("/admin/addHotel")
+    public String addHotel(@RequestParam("name") String name,
+                           @RequestParam("stars") int starRating,
+                           @RequestParam("city") Long city_id)
+    {
+        hotelService.saveHotel(name, starRating, city_id);
+        return "redirect:/admin/hotels";
     }
+
 
     @GetMapping("/tour/add")
     @PreAuthorize("hasRole('ADMIN')")
@@ -276,30 +277,6 @@ public class UserController {
         return "tour-add";
     }
 
-    @GetMapping("/tour/addCountry")
-    @PreAuthorize("hasRole('ADMIN')")
-    public String addCountry(Model model, Principal principal){
-        model.addAttribute("users",userService.list());
-        model.addAttribute("user",userService.getUserByPrincipal(principal));
-        return "tour-addCountry";
-    }
-
-    @GetMapping("/tour/addFlight")
-    @PreAuthorize("hasRole('ADMIN')")
-    public String addFlight(Model model, Principal principal){
-        model.addAttribute("users",userService.list());
-        model.addAttribute("user",userService.getUserByPrincipal(principal));
-        //model.addAttribute("countries",countryService.listCountry());
-        return "tour-addFlight";
-    }
-
-    @GetMapping("/tour/addHotel")
-    @PreAuthorize("hasRole('ADMIN')")
-    public String createHotel(Model model, Principal principal){
-        model.addAttribute("user",userService.getUserByPrincipal(principal));
-        //model.addAttribute("countries",countryService.listCountry());
-        return "tour-addHotel";
-    }
 
 
 

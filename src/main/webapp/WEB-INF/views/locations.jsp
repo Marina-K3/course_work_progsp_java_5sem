@@ -95,7 +95,7 @@
                             <td style="padding: 10px;">${city.country.name}</td>
                             <td style="padding: 10px;">${city.name}</td>
                             <td style="padding: 10px;">
-                                <a href="/admin/deleteCity/${city.id}"><i class="bi bi-ban"></i></a>
+                                <a href="/admin/deleteCity/${city.id}"><i class="bi bi-trash3"></i></a>
                             </td>
                         </tr>
                     </c:forEach>
