@@ -64,34 +64,46 @@
 
                     <c:forEach var="flight" items="${flights}">
                         <tr>
-                            <td style="padding: 10px;">
-                                <c:choose>
-                                    <c:when test="${not empty flight.arrivalCity}">
-                                        ${flight.arrivalCity.name} (${flight.arrivalCity.country.name})
-                                    </c:when>
-                                    <c:otherwise>
-                                        Город был удален
-                                    </c:otherwise>
-                                </c:choose>
-                            </td>
+                            <td style="padding: 10px;">${flight.arrivalCity}</td>
                             <td style="padding: 10px;">${flight.arrivalTime}</td>
-                            <td style="padding: 10px;">
-                                <c:choose>
-                                    <c:when test="${not empty flight.departureCity}">
-                                        ${flight.departureCity.name} (${flight.departureCity.country.name})
-                                    </c:when>
-                                    <c:otherwise>
-                                        Город был удален
-                                    </c:otherwise>
-                                </c:choose>
-                            </td>
+                            <td style="padding: 10px;">${flight.departureCity}</td>
                             <td style="padding: 10px;">${flight.departureTime}</td>
                             <td style="padding: 10px;">${flight.totalSeats}</td>
                             <td style="padding: 10px;">
                                 <a href="/admin/deleteFlight/${flight.id}"><i class="bi bi-trash3"></i></a>
                             </td>
                         </tr>
+
+
+                        <c:set var="lastArrivalFlight" value="true"/>
+                        <c:forEach items="${cities}" var="city">
+                            <c:if test="${city.name eq flight.arrivalCity}">
+                                <c:set var="lastArrivalFlight" value="false"/>
+                            </c:if>
+                        </c:forEach>
+                        <c:if test="${lastArrivalFlight}">
+                    <tr>
+                        <td colspan="6" style="padding: 10px;">Последний рейс в ${flight.arrivalCity} - больше мы с ними не сотрудничаем</td>
+                    </tr>
+                        </c:if>
+
+                        <c:set var="lastDepartureFlight" value="true"/>
+                        <c:forEach items="${cities}" var="city">
+                            <c:if test="${city.name eq flight.departureCity}">
+                                <c:set var="lastDepartureFlight" value="false"/>
+                            </c:if>
+                        </c:forEach>
+                        <c:if test="${lastDepartureFlight}">
+                            <tr>
+                                <td colspan="6" style="padding: 10px;">Последний рейс в ${flight.departureCity} - больше мы с ними не сотрудничаем</td>
+                            </tr>
+                        </c:if>
+
+
                     </c:forEach>
+
+
+
                     <c:if test="${empty flights}">
                         <tr>
                             <td colspan="6" style="padding: 10px;">Рейсов нет - добавьте</td>
@@ -104,14 +116,14 @@
 
                     <select name="arrivalCity"  class="w-[25%] py-[15px] bg-white ps-" style="padding-left: 10px; width: 16.66%"  required>
                         <c:forEach items="${cities}" var="city">
-                            <option value="${city.id}">${city.name}(${city.country.name})</option>
+                            <option value="${city.name}">${city.name}(${city.country.name})</option>
                         </c:forEach>
                     </select>
                     <input type="datetime-local" name="arrivalTime" placeholder="Время вылета" class="w-[25%] py-[15px] bg-white  ps-" style="padding-left: 10px; width: 16.66%" required>
 
                     <select name="departureCity"  class="w-[25%] py-[15px] bg-white ps-" style="padding-left: 10px; width: 16.66%"  required>
                         <c:forEach items="${cities}" var="city">
-                            <option value="${city.id}">${city.name}(${city.country.name})</option>
+                            <option value="${city.name}">${city.name}(${city.country.name})</option>
                         </c:forEach>
                     </select>
 

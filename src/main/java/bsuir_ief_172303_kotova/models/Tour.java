@@ -43,7 +43,6 @@ public class Tour {
 //    @JoinColumn(name = "country_id")
 //    private Country country;
 
-    String countryName;
 
     @ManyToOne(cascade = CascadeType.REFRESH)
     @JoinColumn(name = "city_id")

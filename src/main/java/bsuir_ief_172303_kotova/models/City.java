@@ -27,13 +27,13 @@ public class City {
     @JoinColumn(name = "country_id")
     private Country country;
 
-    @OneToMany(mappedBy = "departureCity", cascade = CascadeType.REFRESH)
-    @LazyCollection(LazyCollectionOption.FALSE)
-    private List<Flight> departureFlights;
-
-    @OneToMany(mappedBy = "arrivalCity", cascade = CascadeType.REFRESH)
-    @LazyCollection(LazyCollectionOption.FALSE)
-    private List<Flight> arrivalFlights;
+//    @OneToMany(mappedBy = "departureCity")
+//    @LazyCollection(LazyCollectionOption.FALSE)
+//    private List<Flight> departureFlights;
+//
+//    @OneToMany(mappedBy = "arrivalCity")
+//    @LazyCollection(LazyCollectionOption.FALSE)
+//    private List<Flight> arrivalFlights;
 
     @OneToMany(mappedBy = "city", fetch = FetchType.EAGER, orphanRemoval = true)
     private List<Hotel> hotels;

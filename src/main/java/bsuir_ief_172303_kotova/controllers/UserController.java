@@ -253,13 +253,13 @@ public class UserController {
     }
 
     @PostMapping("/admin/addFlight")
-    public String addFlight(@RequestParam("arrivalCity") Long arrivalCityId,
+    public String addFlight(@RequestParam("arrivalCity") String arrivalCity,
                             @RequestParam("arrivalTime") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime arrivalTime,
-                            @RequestParam("departureCity")  Long departureCityId,
+                            @RequestParam("departureCity")  String departureCity,
                             @RequestParam("departureTime") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime departureTime,
                             @RequestParam("totalSeats") int totalSeats) {
 
-        flightService.saveFlight(arrivalCityId, departureCityId, arrivalTime, departureTime, totalSeats);
+        flightService.saveFlight(arrivalCity, departureCity, arrivalTime, departureTime, totalSeats);
         return "redirect:/admin/flights";
     }
 

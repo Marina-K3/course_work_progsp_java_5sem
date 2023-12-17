@@ -18,13 +18,18 @@ public class Flight {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
-    @JoinColumn(name = "departure_city_id")
-    private City departureCity;
+//    @ManyToOne(fetch = FetchType.EAGER)
+//    @JoinColumn(name = "departure_city_id", nullable = true, updatable = false)
+//    private City departureCity;
+//
+//    @ManyToOne(fetch = FetchType.EAGER)
+//    @JoinColumn(name = "arrival_city_id", nullable = true, updatable = false)
+//    private City arrivalCity;
 
-    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
-    @JoinColumn(name = "arrival_city_id")
-    private City arrivalCity;
+
+    private String departureCity;
+
+    private String arrivalCity;
 
     @Column(name = "departure_time")
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
