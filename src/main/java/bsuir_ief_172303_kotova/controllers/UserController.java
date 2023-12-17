@@ -185,6 +185,10 @@ public class UserController {
     @GetMapping("/admin/tours")
     public  String tours(Model model){
         model.addAttribute("tours", tourService.listTour());
+        model.addAttribute("flights", flightService.listFlight());
+        model.addAttribute("cities", cityService.listCity());
+        model.addAttribute("hotels", hotelService.listHotel());
+
         return "admin-tours";
     }
 

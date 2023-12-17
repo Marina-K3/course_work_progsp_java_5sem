@@ -19,10 +19,10 @@ public class Tour {
 
     //это время копируется из выбранных рейсов
     @Column(name = "departure_time")
-    private LocalDateTime departureTime;
+    private LocalDateTime departureTime;//flight.arrivalTime
 
     @Column(name = "arrival_time")
-    private LocalDateTime arrivalTime;
+    private LocalDateTime arrivalTime;//returnFlight.departureTime
 
     @OneToOne(cascade = CascadeType.REFRESH)
     @JoinColumn(name = "image_id")
@@ -38,19 +38,13 @@ public class Tour {
 
     private String description;
 
-    //страну узнаем по городу вместо этого создадим просто поле
-//    @ManyToOne(cascade = CascadeType.REFRESH)
-//    @JoinColumn(name = "country_id")
-//    private Country country;
+    //для заполнения нужен город
+    private String City;
+    private String Country;
 
-
-    @ManyToOne(cascade = CascadeType.REFRESH)
-    @JoinColumn(name = "city_id")
-    private City city;
-
-    @ManyToOne(cascade = CascadeType.REFRESH)
-    @JoinColumn(name = "hotel_id")
-    private Hotel hotel;
+    //для заполнения нужен отель
+    private String hotelName;
+    private String hotelStars;
 
     @ManyToOne(cascade = CascadeType.REFRESH)
     @JoinColumn(name = "flight_id")

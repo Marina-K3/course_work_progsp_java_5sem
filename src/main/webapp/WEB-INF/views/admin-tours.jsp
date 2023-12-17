@@ -43,9 +43,8 @@
     </section>
 
 
-
-
-        <section class="w-full flex justify-center bg-color3 py-8 h-auto">
+    <%--туры--%>
+    <section class="w-full flex justify-center bg-color3 py-8 h-auto">
             <div class="w-full container 2xl:px-36">
                 <div>
                     <div class="flex flex-wrap md:justify-between gap-10 px-6 xl:px-0 py-8 lg:px-3 ">
@@ -55,21 +54,22 @@
                         <figure class="w-full md:w-[45%] xl:w-[30%] h-[450px] relative photo transition-all duration-1000 ">
                             <div class="w-[100%] h-[100%] bottom-photo absolute bg-white flex flex-col justify-center px-5">
                                 <p class="text-3xl text-color3 capitalize font-secondary"></p>
-                                <p class="text-color1 mb-4">$2.500 / с человека</p>
-                                <p class="text-color6">Обязательно побывайте на этих островах - поверьте, Мальдивы того стоят</p>
+                                <p class="text-color1 mb-4">$${tour.price} / с человека</p>
+                                <p class="text-color6">${tour.description}</p>
                                 <div class="flex flex-wrap my-4">
-                                    <div class="w-[50%] flex"><i class="bi bi-clock text-color4"></i><p class="text-color6 ms-2">12 Дней</p></div>
-                                    <div class="w-[50%] flex"><i class="bi bi-geo-alt text-color4"></i><p class="text-color6 ms-2">Mальдивы</p></div>
-                                    <div class="w-[50%] flex"><i class="bi bi-person text-color4"></i></i><p class="text-color6 ms-2">12+</p></div>
-                                    <div class="w-[50%] flex"><i class="bi bi-emoji-smile text-color4"></i></i><p class="text-color6 ms-2">9.8 Звёзд</p></div>
+                                    <div class="w-[50%] flex"><i class="bi bi-clock text-color4"></i><p class="text-color6 ms-2">${tour.durationDays} Дней</p></div>
+                                    <div class="w-[50%] flex"><i class="bi bi-geo-alt text-color4"></i><p class="text-color6 ms-2">${tour.city}(${tour.country})</p></div>
+                                    <div class="w-[50%] flex"><i class="bi bi-building text-color4"></i></i><p class="text-color6 ms-2">${tour.hotelName}</p></div>
+                                    <div class="w-[50%] flex"><i class="bi bi-star text-color4"></i></i><p class="text-color6 ms-2">${tour.hotelStars} Звёзд</p></div>
                                 </div>
-                                <a href="" class="underline decoration-color1 text-color6 flex mb-2">Тур детали</a>
+                                <a href="" class="underline decoration-color1 text-color6 flex mb-2">Удалить</a>
+                                <a href="" class="underline decoration-color1 text-color6 flex mb-2">Редактировать</a>
                             </div>
-                            <img src="/static/img/maldives1.jpg" alt="" class="w-[100%] h-[100%] object-cover brightness-75 absolute">
-                            <p class="absolute uppercase text-white bg-color3 px-4 py-1 right-1 top-12 rotate-[-90deg] ">Мальдивы</p>
+                            <img src="/image/${tour.image.id}" alt="" class="w-[100%] h-[100%] object-cover brightness-75 absolute">
+                            <p class="absolute uppercase text-white bg-color3 px-4 py-1 right-1 top-12 rotate-[-90deg] ">${tour.city}</p>
                             <figcaption class="absolute text-white bottom-8 right-10 fig">
-                                <p class="capitalize font-secondary text-3xl">Мальдивы тур</p>
-                                <p class="text-right">$2.500 / с человека</p>
+                                <p class="capitalize font-secondary text-3xl">${tour.name}</p>
+                                <p class="text-right">$${tour.price} / с человека</p>
                             </figcaption>
                         </figure>
 
@@ -78,6 +78,75 @@
                     </div>
                 </div>
             </div>
+    </section>
+
+
+        <section class="w-full flex justify-center bg-color3 py-8 h-auto">
+        <div style="display: flex; justify-content: center; align-items: flex-start; width: 73%;">
+            <div style="width: 100%">
+                <form action="/admin/addTour" method="post" class="flex font-primary" style="margin-top: 45px">
+                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+                    <div style="display: flex; flex-direction: column; flex-grow: 1; ">
+
+
+                        <div style="display: flex; flex-direction: row;">
+                            <input type="text" name="name" placeholder="Имя" class="w-[25%] py-[15px] bg-white  ps-" style="padding-left: 10px; width: 25%" required>
+                            <input type="text" maxlength="100" name="description" placeholder="Описание" class="w-[25%] py-[15px] bg-white  ps-" style="padding-left: 10px; width: 75%" required>
+                        </div>
+                        <div style="display: flex; flex-direction: row;">
+
+                        <p class="py-[15px] ps-5 w-[25%] outline-none focus:outline-none" style="padding-left: 10px; font-size: 19px; color: white; width: 50%">Рейс туда</p>
+                        <p class="py-[15px] ps-5 w-[25%] outline-none focus:outline-none" style="padding-left: 10px; font-size: 19px; color: white; width: 50%">Рейс обратно</p>
+
+                        </div>
+                        <div style="display: flex; flex-direction: row;">
+                            <select name="flightId"  class="w-[25%] py-[15px] bg-white ps-" style="padding-left: 10px; width: 50%"  required>
+                                <c:forEach items="${flights}" var="flight">
+                                    <option value="${flight.id}">из ${flight.departureCity} в ${flight.arrivalCity} время ${flight.departureTime}</option>
+                                </c:forEach>
+                            </select>
+                            <select name="returnFlightId"  class="w-[25%] py-[15px] bg-white ps-" style="padding-left: 10px; width: 50%"  required>
+                                    <c:forEach items="${flights}" var="flight">
+                                        <option value="${flight.id}">из ${flight.departureCity} в ${flight.arrivalCity} время ${flight.departureTime}</option>
+                                    </c:forEach>
+                            </select>
+                        </div>
+
+                        <div style="display: flex; flex-direction: row;">
+
+                            <p class="py-[15px] ps-5 w-[25%] outline-none focus:outline-none" style="padding-left: 10px; font-size: 19px; color: white; width: 25%">Город (Страна)</p>
+                            <p class="py-[15px] ps-5 w-[25%] outline-none focus:outline-none" style="padding-left: 10px; font-size: 19px; color: white; width: 25%">Отель (Страна)</p>
+                            <p class="py-[15px] ps-5 w-[25%] outline-none focus:outline-none" style="padding-left: 10px; font-size: 19px; color: white; width: 25%">Цена</p>
+                            <p class="py-[15px] ps-5 w-[25%] outline-none focus:outline-none" style="padding-left: 10px; font-size: 19px; color: white; width: 25%"></p>
+
+                        </div>
+
+                        <div style="display: flex; flex-direction: row;">
+                            <select name="cityId"  class="w-[25%] py-[15px] bg-white ps-" style="padding-left: 10px; width: 25%"  required>
+                                <c:forEach items="${cities}" var="city">
+                                    <option value="${city.id}">${city.name}(${city.country.name})</option>
+                                </c:forEach>
+                            </select>
+                            <select name="hotelId"  class="w-[25%] py-[15px] bg-white ps-" style="padding-left: 10px; width: 25%"  required>
+                                <c:forEach items="${hotels}" var="hotel">
+                                    <option value="${hotel.id}">${hotel.name}(${hotel.city.name})</option>
+                                </c:forEach>
+                            </select>
+                            <input type="number" step="0.1" name="price" class="w-[25%] py-[15px] bg-white ps-" style="padding-left: 10px; width: 25%" required>
+                            <button type="submit" class="bg-color1 w-[25%] text-white flex items-center justify-center text-[18px] hover:bg-color3 transition-all duration-500" style="padding-left: 10px; flex-grow: 1; width: 16.66%;" ><i class="bi bi-plus"></i>Добавить</button>
+                        </div>
+                        <div style="display: flex; flex-direction: row;">
+
+                           <input style="padding-top: 20px; width: 30%" required type="file" name="img" accept="image/jpeg">
+
+                        </div>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+
         </section>
 
 
