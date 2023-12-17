@@ -2,6 +2,7 @@ package bsuir_ief_172303_kotova.controllers;
 import bsuir_ief_172303_kotova.models.User;
 import bsuir_ief_172303_kotova.services.*;
 import lombok.RequiredArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -124,22 +126,6 @@ public class UserController {
         return "redirect:/profile";
     }
 
-    @GetMapping("/user/{user}")
-    @PreAuthorize("hasRole('USER')")
-    public String userInfo(@PathVariable("user") User user, Model model, Principal principal) {
-        model.addAttribute("user", user);
-        model.addAttribute("userByPrincipal", userService.getUserByPrincipal(principal));
-        return "user-info";
-    }
-
-    @GetMapping("/user/edit/{user}")
-    @PreAuthorize("hasRole('USER')")
-    public String userEdit(@PathVariable("user") User user, Model model, Principal principal){
-        model.addAttribute("user",user);
-        model.addAttribute("user",userService.getUserByPrincipal(principal));
-        return "user-edit";
-    }
-
 
 // для администратора
 
@@ -172,8 +158,6 @@ public class UserController {
     }
 
 
-
-
     @GetMapping("/admin/data")
     public  String data(Model model){
         return "data";
@@ -188,6 +172,7 @@ public class UserController {
     @GetMapping("/admin/flights")
     public  String flights(Model model){
         model.addAttribute("flights", flightService.listFlight());
+        model.addAttribute("cities", cityService.listCity());
         return "flights";
     }
     @GetMapping("/admin/hotels")
@@ -267,18 +252,24 @@ public class UserController {
         return "redirect:/admin/hotels";
     }
 
+    @PostMapping("/admin/addFlight")
+    public String addFlight(@RequestParam("arrivalCity") Long arrivalCityId,
+                            @RequestParam("arrivalTime") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime arrivalTime,
+                            @RequestParam("departureCity")  Long departureCityId,
+                            @RequestParam("departureTime") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime departureTime,
+                            @RequestParam("totalSeats") int totalSeats) {
 
-    @GetMapping("/tour/add")
-    @PreAuthorize("hasRole('ADMIN')")
-    public String addTour(Model model, Principal principal){
-        model.addAttribute("users",userService.list());
-        model.addAttribute("user",userService.getUserByPrincipal(principal));
-        //model.addAttribute("countries", countryService.listCountry());
-        //model.addAttribute("flights",flightService.listFlight());
-        return "tour-add";
+        flightService.saveFlight(arrivalCityId, departureCityId, arrivalTime, departureTime, totalSeats);
+        return "redirect:/admin/flights";
     }
 
 
+    @GetMapping("/admin/deleteFlight/{id}")
+    public String deleteFlight(@PathVariable("id") Long id)
+    {
+        flightService.deleteFlightById(id);
+        return "redirect:/admin/flights";
+    }
 
 
     @GetMapping("/admin/statistics")

@@ -120,26 +120,26 @@ public class OrderService {
     public List<Order> listDocument(){
         return orderRepository.findAll();
     }
-
-    public List<ChartsData> findFavoriteCountry(){
-        List<Order> orders = listDocument();
-        List<Country> countries=countryService.listCountry();
-        List<ChartsData> chartsDataList = new ArrayList<>();
-        int count =0;
-        for(Country country: countries){
-            for(Order order: orders){
-                if(order.getTour().getCountry().getId()==country.getId()){
-                    count++;
-                }
-            }
-            ChartsData chartsData= new ChartsData();
-            chartsData.setCount(count);
-            chartsData.setName(country.getName());
-            chartsDataList.add(chartsData);
-            count=0;
-        }
-        return chartsDataList;
-    }
+//
+//    public List<ChartsData> findFavoriteCountry(){
+//        List<Order> orders = listDocument();
+//        List<Country> countries=countryService.listCountry();
+//        List<ChartsData> chartsDataList = new ArrayList<>();
+//        int count =0;
+//        for(Country country: countries){
+//            for(Order order: orders){
+//                if(order.getTour().getCountry().getId()==country.getId()){
+//                    count++;
+//                }
+//            }
+//            ChartsData chartsData= new ChartsData();
+//            chartsData.setCount(count);
+//            chartsData.setName(country.getName());
+//            chartsDataList.add(chartsData);
+//            count=0;
+//        }
+//        return chartsDataList;
+//    }
 
     public List<ChartsData> statistics() {
         List<ChartsData> chartsDataList = new ArrayList<>();

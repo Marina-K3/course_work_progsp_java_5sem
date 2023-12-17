@@ -17,6 +17,7 @@ public class Tour {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    //это время копируется из выбранных рейсов
     @Column(name = "departure_time")
     private LocalDateTime departureTime;
 
@@ -29,6 +30,7 @@ public class Tour {
 
     private float price;
 
+    //не заполняется а вычисляется
     @Column(name = "duration_days")
     private int durationDays;
 
@@ -36,9 +38,12 @@ public class Tour {
 
     private String description;
 
-    @ManyToOne(cascade = CascadeType.REFRESH)
-    @JoinColumn(name = "country_id")
-    private Country country;
+    //страну узнаем по городу вместо этого создадим просто поле
+//    @ManyToOne(cascade = CascadeType.REFRESH)
+//    @JoinColumn(name = "country_id")
+//    private Country country;
+
+    String countryName;
 
     @ManyToOne(cascade = CascadeType.REFRESH)
     @JoinColumn(name = "city_id")

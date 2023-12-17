@@ -50,49 +50,82 @@
             <div style="width: 100%">
                 <table style="width: 100%; border: 0.5px solid white; color: white; text-align: center; font-size: 20px; padding-left: 0px">
                     <tr>
-                        <td colspan="4" style="padding: 10px;">Отели</td>
+                        <td colspan="6" style="padding: 10px;">Рейсы</td>
                     </tr>
                     <tr style="padding: 10px;">
-                        <th style="padding: 10px;">Название</th>
-                        <th style="padding: 10px;">Кол-во звёзд</th>
-                        <th style="padding: 10px;">Город (Страна)</th>
+                        <th style="padding: 10px;">Город(Страна) вылета</th>
+                        <th style="padding: 10px;">Время вылета</th>
+                        <th style="padding: 10px;">Город(Страна) отлёта</th>
+                        <th style="padding: 10px;">Время отлёта</th>
+                        <th style="padding: 10px;">Кол-во мест</th>
                         <th style="padding: 10px;">Удалить?</th>
 
                     </tr>
 
-                    <c:forEach var="hotel" items="${hotels}">
+                    <c:forEach var="flight" items="${flights}">
                         <tr>
-                            <td style="padding: 10px;">${hotel.name}</td>
-                            <td style="padding: 10px;">${hotel.starRating}</td>
-                            <td style="padding: 10px;">${hotel.city.name} (${hotel.city.country.name})</td>
                             <td style="padding: 10px;">
-                                <a href="/admin/deleteHotel/${hotel.id}"><i class="bi bi-trash3"></i></a>
+                                <c:choose>
+                                    <c:when test="${not empty flight.arrivalCity}">
+                                        ${flight.arrivalCity.name} (${flight.arrivalCity.country.name})
+                                    </c:when>
+                                    <c:otherwise>
+                                        Город был удален
+                                    </c:otherwise>
+                                </c:choose>
+                            </td>
+                            <td style="padding: 10px;">${flight.arrivalTime}</td>
+                            <td style="padding: 10px;">
+                                <c:choose>
+                                    <c:when test="${not empty flight.departureCity}">
+                                        ${flight.departureCity.name} (${flight.departureCity.country.name})
+                                    </c:when>
+                                    <c:otherwise>
+                                        Город был удален
+                                    </c:otherwise>
+                                </c:choose>
+                            </td>
+                            <td style="padding: 10px;">${flight.departureTime}</td>
+                            <td style="padding: 10px;">${flight.totalSeats}</td>
+                            <td style="padding: 10px;">
+                                <a href="/admin/deleteFlight/${flight.id}"><i class="bi bi-trash3"></i></a>
                             </td>
                         </tr>
                     </c:forEach>
-                    <c:if test="${empty hotels}">
+                    <c:if test="${empty flights}">
                         <tr>
-                            <td colspan="4" style="padding: 10px;">Отелей нет - добавьте</td>
+                            <td colspan="6" style="padding: 10px;">Рейсов нет - добавьте</td>
                         </tr>
                     </c:if>
                 </table>
 
-                <form action="/admin/addHotel" method="post" class="flex font-primary"; style="margin-top: 10px">
+                <form action="/admin/addFlight" method="post" class="flex font-primary" style="margin-top: 45px">
                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
-                    <input type = "text"   name="name" placeholder="Название" class="w-[25%] py-[15px] bg-white  ps-" style="padding-left: 10px; width: 33.3%" required>
-                    <select class="w-[25%] py-[15px] bg-white ps-" style="padding-left: 10px; width: 33.3%"  required name="stars">
-                        <option value="1">1 звезда</option>
-                        <option value="2">2 звезды</option>
-                        <option value="3">3 звезды</option>
-                        <option value="4">4 звезды</option>
-                        <option value="5">5 звезд</option>
-                    </select>
-                    <select name="city"  class="w-[25%] py-[15px] bg-white ps-" style="padding-left: 10px; width: 33.3%"  required>
+
+                    <select name="arrivalCity"  class="w-[25%] py-[15px] bg-white ps-" style="padding-left: 10px; width: 16.66%"  required>
                         <c:forEach items="${cities}" var="city">
                             <option value="${city.id}">${city.name}(${city.country.name})</option>
                         </c:forEach>
                     </select>
-                    <button type="submit" class="bg-color1 w-[25%] text-white flex items-center justify-center text-[18px] hover:bg-color3 transition-all duration-500" style="width: 33.3%" ><i class="bi bi-plus"></i> Добавить</button>
+                    <input type="datetime-local" name="arrivalTime" placeholder="Время вылета" class="w-[25%] py-[15px] bg-white  ps-" style="padding-left: 10px; width: 16.66%" required>
+
+                    <select name="departureCity"  class="w-[25%] py-[15px] bg-white ps-" style="padding-left: 10px; width: 16.66%"  required>
+                        <c:forEach items="${cities}" var="city">
+                            <option value="${city.id}">${city.name}(${city.country.name})</option>
+                        </c:forEach>
+                    </select>
+
+                    <input type="datetime-local" name="departureTime" placeholder="Время отлёта" class="w-[25%] py-[15px] bg-white  ps-" style="padding-left: 10px; width: 16.66%" required>
+
+                    <select class="w-[25%] py-[15px] bg-white ps-" style="padding-left: 10px; width: 16.66%"  required name="totalSeats">
+                        <option value="50">50 мест</option>
+                        <option value="100">100 мест</option>
+                        <option value="150">150 мест</option>
+                        <option value="200">200 мест</option>
+                    </select>
+
+                    <button type="submit" class="bg-color1 w-[25%] text-white flex items-center justify-center text-[18px] hover:bg-color3 transition-all duration-500" style="padding-left: 10px; flex-grow: 1; width: 16.66%;" ><i class="bi bi-plus"></i>Добавить</button>
+
                 </form>
 
             </div>

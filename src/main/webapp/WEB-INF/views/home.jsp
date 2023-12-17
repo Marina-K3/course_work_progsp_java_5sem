@@ -91,6 +91,7 @@
     </section>
     <section class="w-full flex justify-center bg-color7 py-8 ">
         <div class="w-full container 2xl:px-36">
+
             <div>
                 <p class="text-color4 uppercase px-5">Выбирайте лучшее</p>
                 <p class="text-5xl font-secondary text-color3 px-5">Популярные <span class="text-color1">Туры</span></p>

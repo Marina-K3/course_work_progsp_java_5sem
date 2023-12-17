@@ -98,6 +98,8 @@ CREATE TABLE orders (
                         tour_id BIGINT,
                         order_date DATE,
                         cancelled BOOLEAN,
+                        total_seats INT,
+                        occupied_seats INT,
                         FOREIGN KEY (user_id) REFERENCES users (id),
                         FOREIGN KEY (tour_id) REFERENCES tours (id)
 );

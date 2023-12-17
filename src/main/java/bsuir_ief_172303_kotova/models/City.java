@@ -27,11 +27,11 @@ public class City {
     @JoinColumn(name = "country_id")
     private Country country;
 
-    @OneToMany(mappedBy = "departureCity", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "departureCity", cascade = CascadeType.REFRESH)
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<Flight> departureFlights;
 
-    @OneToMany(mappedBy = "arrivalCity", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "arrivalCity", cascade = CascadeType.REFRESH)
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<Flight> arrivalFlights;
 
