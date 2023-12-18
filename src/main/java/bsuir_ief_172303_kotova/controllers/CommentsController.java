@@ -23,11 +23,6 @@ import java.util.Date;
 public class CommentsController {
 
     private final CommentService commentService;
-//    @GetMapping("/sendReview")
-//    public String registration(Principal principal, Model model, HttpServletRequest request) {
-//        //model.addAttribute("user", userService.getUserByPrincipal(principal));
-//        return request.getRequestURI(); // Возвращаем текущий путь запроса
-//    }
 
     @PostMapping("/reviews")
     public String sendReview(@RequestParam("review") String review,
@@ -36,6 +31,11 @@ public class CommentsController {
         // сохранить комментарий в БД
         commentService.save(review, request);
 
-        return "thanks";
+        String referer = request.getHeader("Referer");
+        if (referer != null) {
+            return "redirect:" + referer;
+        } else {
+            return "thanks";
+        }
     }
 }

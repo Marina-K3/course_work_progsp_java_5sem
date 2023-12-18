@@ -1,12 +1,9 @@
 package bsuir_ief_172303_kotova.controllers;
-import bsuir_ief_172303_kotova.models.City;
 import bsuir_ief_172303_kotova.models.Flight;
-import bsuir_ief_172303_kotova.models.Hotel;
 import bsuir_ief_172303_kotova.models.User;
 import bsuir_ief_172303_kotova.services.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -211,8 +208,50 @@ public class UserController {
 
     @GetMapping("/user/comments")
     public  String userComments(Model model){
-        model.addAttribute("tours", tourService.listTour());
+        model.addAttribute("comments", commentService.listComment());
         return "user-comments";
+    }
+
+    @GetMapping("/user/orders")
+    public  String userOrders(Model model, Principal principal){
+        model.addAttribute("orders", orderService.getOrderByUser(userService.getUserByPrincipal(principal)));
+        model.addAttribute("tours", tourService.listTour());
+        return "user-orders";
+    }
+
+    @GetMapping("/admin/orders")
+    public  String adminOrders(Model model, Principal principal){
+        model.addAttribute("orders", orderService.getOrderByUser(userService.getUserByPrincipal(principal)));
+        model.addAttribute("tours", tourService.listTour());
+        return "admin-orders";
+    }
+
+    ///user/ByTour/${tour.id}
+    @GetMapping("/user/ByTour/{id}")
+    public String userByTour(@PathVariable("id") Long id, Principal principal)
+    {
+        orderService.saveOrder(id, principal);
+        return "redirect:/user/orders";
+    }
+    @GetMapping("/admin/ByTour/{id}")
+    public String adminByTour(@PathVariable("id") Long id, Principal principal)
+    {
+        orderService.saveOrder(id, principal);
+        return "redirect:/admin/orders";
+    }
+
+
+    @GetMapping("/user/cancelTour/{id}")
+    public String userCancelTour(@PathVariable("id") Long id, Principal principal)
+    {
+        orderService.cancelOrder(id);
+        return "redirect:/user/orders";
+    }
+    @GetMapping("/admin/cancelTour/{id}")
+    public String adminCancelTour(@PathVariable("id") Long id, Principal principal)
+    {
+        orderService.cancelOrder(id);
+        return "redirect:/admin/orders";
     }
 
 
@@ -344,6 +383,7 @@ public String formEditTour(@PathVariable("id") Long id, Model model){
     @GetMapping("/admin/deleteTour/{id}")
     public String deleteTour(@PathVariable("id") Long id)
     {
+
         tourService.deleteTourById(id);
         return "redirect:/admin/tours";
     }

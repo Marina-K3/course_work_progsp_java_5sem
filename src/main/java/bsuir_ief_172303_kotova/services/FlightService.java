@@ -50,5 +50,9 @@ public class FlightService {
 
         return flightRepository.getFlightById(flightId);
     }
+
+    public void setOccupiedSeatsInFlights(Flight flight) {
+        flightRepository.getFlightById(flight.getId()).setOccupiedSeats(flight.getOccupiedSeats());
+    }
 }
 

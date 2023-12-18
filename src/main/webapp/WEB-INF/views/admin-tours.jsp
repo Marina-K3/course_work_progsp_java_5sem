@@ -54,7 +54,7 @@
                             <c:set var="editable" value="true" />
 
                             <c:forEach var="order" items="${orders}">
-                                <c:if test="${order.tour.id eq tour.id && !order.cancelled}">
+                                <c:if test="${order.tour.id eq tour.id}">
                                     <c:set var="deletable" value="false" />
                                     <c:set var="editable" value="false" />
                                 </c:if>

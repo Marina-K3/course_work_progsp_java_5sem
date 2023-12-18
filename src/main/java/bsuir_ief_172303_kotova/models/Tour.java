@@ -6,6 +6,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Getter
@@ -54,6 +55,8 @@ public class Tour {
     @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
     @JoinColumn(name = "return_flight_id")
     private Flight returnFlight;
+
+
 
     // Геттеры, сеттеры и другие методы
 }
