@@ -18,6 +18,7 @@
 <body class="font-primary">
 <main class="w-full">
 
+    <%-- хедер с менюшкой--%>
     <section class="w-full flex justify-center bg-color3 py-8 h-auto">
 
         <section class="w-full flex flex-wrap justify-center ">
@@ -44,123 +45,76 @@
 
 
 
-    <%--таблица--%>
-    <section class="w-full flex justify-center bg-color3 py-8 h-auto" >
+    <section class="w-full flex justify-center bg-color3 py-8 h-auto">
         <div style="display: flex; justify-content: center; align-items: flex-start; width: 73%;">
             <div style="width: 100%">
-                <table style="width: 100%; border: 0.5px solid white; color: white; text-align: center; font-size: 20px; padding-left: 0px">
-                    <tr>
-                        <td colspan="6" style="padding: 10px;">Рейсы</td>
-                    </tr>
-                    <tr style="padding: 10px;">
-                        <th style="padding: 10px;">Из</th>
-                        <th style="padding: 10px;">Время вылета</th>
-                        <th style="padding: 10px;">В</th>
-                        <th style="padding: 10px;">Время отлёта</th>
-                        <th style="padding: 10px;">Кол-во мест</th>
-                        <th style="padding: 10px;">Удалить?</th>
-
-                    </tr>
-
-                    <c:forEach var="flight" items="${flights}">
-                        <tr>
-                            <td style="padding: 10px;">${flight.departureCity}</td>
-                            <td style="padding: 10px;">${flight.departureTime}</td>
-                            <td style="padding: 10px;">${flight.arrivalCity}</td>
-                            <td style="padding: 10px;">${flight.arrivalTime}</td>
-                            <td style="padding: 10px;">${flight.totalSeats}</td>
-                            <td style="padding: 10px;">
-                                <c:set var="deleteLink" value="/admin/deleteFlight/${flight.id}" />
-                                <c:forEach var="tour" items="${tours}">
-                                    <c:if test="${tour.flight.id eq flight.id || tour.returnFlight.id eq flight.id}">
-                                        <c:set var="deleteLink" value="" />
-                                        <c:set var="deleteText" value="Удаление невозможно" />
-                                    </c:if>
-                                </c:forEach>
-                                <c:choose>
-                                    <c:when test="${not empty deleteLink}">
-                                        <a href="${deleteLink}"><i class="bi bi-trash3"></i></a>
-                                    </c:when>
-                                    <c:otherwise>
-                                        ${deleteText}
-                                    </c:otherwise>
-                                </c:choose>
-                            </td>
-                        </tr>
-
-                        <c:set var="lastDepartureFlight" value="true"/>
-                        <c:forEach items="${cities}" var="city">
-                            <c:if test="${city.name eq flight.departureCity}">
-                                <c:set var="lastDepartureFlight" value="false"/>
-                            </c:if>
-                        </c:forEach>
-                        <c:if test="${lastDepartureFlight}">
-                            <tr>
-                                <td colspan="6" style="padding: 10px;">Последний рейс в ${flight.departureCity} - больше мы с ними не сотрудничаем</td>
-                            </tr>
-                        </c:if>
-
-
-                        <c:set var="lastArrivalFlight" value="true"/>
-                        <c:forEach items="${cities}" var="city">
-                            <c:if test="${city.name eq flight.arrivalCity}">
-                                <c:set var="lastArrivalFlight" value="false"/>
-                            </c:if>
-                        </c:forEach>
-                        <c:if test="${lastArrivalFlight}">
-                    <tr>
-                        <td colspan="6" style="padding: 10px;">Последний рейс в ${flight.arrivalCity} - больше мы с ними не сотрудничаем</td>
-                    </tr>
-                        </c:if>
-
-
-
-
-                    </c:forEach>
-
-
-
-                    <c:if test="${empty flights}">
-                        <tr>
-                            <td colspan="6" style="padding: 10px;">Рейсов нет - добавьте</td>
-                        </tr>
-                    </c:if>
-                </table>
-
-                <form action="/admin/addFlight" method="post" class="flex font-primary" style="margin-top: 45px">
+                <form action="/admin/editTour/${tour.id}" method="post" enctype="multipart/form-data" class="flex font-primary" style="margin-top: 45px">
                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+                    <div style="display: flex; flex-direction: column; flex-grow: 1; ">
 
-                    <select name="departureCity"  class="w-[25%] py-[15px] bg-white ps-" style="padding-left: 10px; width: 16.66%"  required>
-                        <c:forEach items="${cities}" var="city">
-                            <option value="${city.name}">${city.name}(${city.country.name})</option>
-                        </c:forEach>
-                    </select>
-                    <input type="datetime-local" name="departureTime" placeholder="Время вылета" class="w-[25%] py-[15px] bg-white  ps-" style="padding-left: 10px; width: 16.66%" required>
 
-                    <select name="arrivalCity"  class="w-[25%] py-[15px] bg-white ps-" style="padding-left: 10px; width: 16.66%"  required>
-                        <c:forEach items="${cities}" var="city">
-                            <option value="${city.name}">${city.name}(${city.country.name})</option>
-                        </c:forEach>
-                    </select>
+                        <div style="display: flex; flex-direction: row;">
+                            <input type="text" name="name" placeholder="${tour.name}" class="w-[25%] py-[15px] bg-white  ps-" style="padding-left: 10px; width: 25%" required>
+                            <input type="text" maxlength="100" name="description" placeholder="${tour.description}" class="w-[25%] py-[15px] bg-white  ps-" style="padding-left: 10px; width: 75%" required>
+                        </div>
+                        <div style="display: flex; flex-direction: row;">
 
-                    <input type="datetime-local" name="arrivalTime" placeholder="Время отлёта" class="w-[25%] py-[15px] bg-white  ps-" style="padding-left: 10px; width: 16.66%" required>
+                            <p class="py-[15px] ps-5 w-[25%] outline-none focus:outline-none" style="padding-left: 10px; font-size: 19px; color: white; width: 50%">Рейс туда</p>
+                            <p class="py-[15px] ps-5 w-[25%] outline-none focus:outline-none" style="padding-left: 10px; font-size: 19px; color: white; width: 50%">Рейс обратно</p>
 
-                    <select class="w-[25%] py-[15px] bg-white ps-" style="padding-left: 10px; width: 16.66%"  required name="totalSeats">
-                        <option value="50">50 мест</option>
-                        <option value="100">100 мест</option>
-                        <option value="150">150 мест</option>
-                        <option value="200">200 мест</option>
-                    </select>
+                        </div>
+                        <div style="display: flex; flex-direction: row;">
+                            <select name="flightId"  class="w-[25%] py-[15px] bg-white ps-" style="padding-left: 10px; width: 50%"  required>
+                                <c:forEach items="${flights}" var="flight">
+                                    <option value="${flight.id}">из ${flight.departureCity} в ${flight.arrivalCity} время ${flight.departureTime}</option>
+                                </c:forEach>
+                            </select>
+                            <select name="returnFlightId"  class="w-[25%] py-[15px] bg-white ps-" style="padding-left: 10px; width: 50%"  required>
+                                <c:forEach items="${flights}" var="flight">
+                                    <option value="${flight.id}">из ${flight.departureCity} в ${flight.arrivalCity} время ${flight.departureTime}</option>
+                                </c:forEach>
+                            </select>
+                        </div>
 
-                    <button type="submit" class="bg-color1 w-[25%] text-white flex items-center justify-center text-[18px] hover:bg-color3 transition-all duration-500" style="padding-left: 10px; flex-grow: 1; width: 16.66%;" ><i class="bi bi-plus"></i>Добавить</button>
+                        <div style="display: flex; flex-direction: row;">
+
+                            <p class="py-[15px] ps-5 w-[25%] outline-none focus:outline-none" style="padding-left: 10px; font-size: 19px; color: white; width: 25%">Город (Страна)</p>
+                            <p class="py-[15px] ps-5 w-[25%] outline-none focus:outline-none" style="padding-left: 10px; font-size: 19px; color: white; width: 25%">Отель (Страна)</p>
+                            <p class="py-[15px] ps-5 w-[25%] outline-none focus:outline-none" style="padding-left: 10px; font-size: 19px; color: white; width: 25%">Цена</p>
+                            <p class="py-[15px] ps-5 w-[25%] outline-none focus:outline-none" style="padding-left: 10px; font-size: 19px; color: white; width: 25%"></p>
+
+                        </div>
+
+                        <div style="display: flex; flex-direction: row;">
+                            <select name="cityId"  class="w-[25%] py-[15px] bg-white ps-" style="padding-left: 10px; width: 25%"  required>
+                                <c:forEach items="${cities}" var="city">
+                                    <option value="${city.id}">${city.name}(${city.country.name})</option>
+                                </c:forEach>
+                            </select>
+                            <select name="hotelId"  class="w-[25%] py-[15px] bg-white ps-" style="padding-left: 10px; width: 25%"  required>
+                                <c:forEach items="${hotels}" var="hotel">
+                                    <option value="${hotel.id}">${hotel.name}(${hotel.city.name})</option>
+                                </c:forEach>
+                            </select>
+                            <input type="number" step="0.1" placeholder="${tour.price}" name="price" class="w-[25%] py-[15px] bg-white ps-" style="padding-left: 10px; width: 25%" required>
+                            <button type="submit" class="bg-color1 w-[25%] text-white flex items-center justify-center text-[18px] hover:bg-color3 transition-all duration-500" style="padding-left: 10px; flex-grow: 1; width: 16.66%;" ><i class="bi bi-plus"></i>Добавить</button>
+                        </div>
+                        <div style="display: flex; flex-direction: row;">
+
+                            <input style="padding-top: 20px; width: 30%" required type="file" name="img" accept="image/jpeg">
+
+                        </div>
+                    </div>
 
                 </form>
 
             </div>
         </div>
+
     </section>
 
 
+    <%--бегущие картинки--%>
     <section class="w-full flex justify-center bg-color7 overflow-hidden  ">
         <div class="w-full container flex whitespace-nowrap overflow-hidden group  ">
             <div class="flex  logos-slide animate-anime w-full flex-wrap whitespace-nowrap group-hover:pause  ">

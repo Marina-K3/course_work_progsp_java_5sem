@@ -28,7 +28,7 @@ public class FlightService {
 // Проверка, что город вылета и город прилета не совпадают
         if (!arrivalCity.equals(departureCity)) {
 // Проверка, что время вылета и время прилета не совпадают и правильны в хронологии
-            if (arrivalDateTime.isBefore(departureDateTime)) {
+            if (departureDateTime.isBefore(arrivalDateTime)) {
 
                 Flight flight = new Flight();
                 flight.setOccupiedSeats(0);

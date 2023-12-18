@@ -25,7 +25,7 @@ public class Tour {
     @Column(name = "arrival_time")
     private LocalDateTime arrivalTime;//returnFlight.departureTime
 
-    @OneToOne(cascade = CascadeType.REFRESH, orphanRemoval = true)
+    @OneToOne(cascade = CascadeType.MERGE, orphanRemoval = true)
     @JoinColumn(name = "image_id")
     private Image image;
 
@@ -47,11 +47,11 @@ public class Tour {
     private String hotelName;
     private int hotelStars;
 
-    @ManyToOne(cascade = CascadeType.REFRESH)
+    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
     @JoinColumn(name = "flight_id")
     private Flight flight;
 
-    @ManyToOne(cascade = CascadeType.REFRESH)
+    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
     @JoinColumn(name = "return_flight_id")
     private Flight returnFlight;
 

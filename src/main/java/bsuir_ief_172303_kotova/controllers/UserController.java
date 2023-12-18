@@ -36,6 +36,8 @@ public class UserController {
 
     private final HotelService hotelService;
 
+    private final OrderService orderService;
+
     private final FlightService flightService;
 
     private final TourService tourService;
@@ -177,6 +179,7 @@ public class UserController {
     public  String flights(Model model){
         model.addAttribute("flights", flightService.listFlight());
         model.addAttribute("cities", cityService.listCity());
+        model.addAttribute("tours", tourService.listTour());
         return "flights";
     }
     @GetMapping("/admin/hotels")
@@ -187,8 +190,9 @@ public class UserController {
     }
 
     @GetMapping("/admin/tours")
-    public  String tours(Model model){
+    public  String AdminTours(Model model){
         model.addAttribute("tours", tourService.listTour());
+        model.addAttribute("orders", orderService.listOrder());
         model.addAttribute("flights", flightService.listFlight());
         model.addAttribute("cities", cityService.listCity());
         model.addAttribute("hotels", hotelService.listHotel());
@@ -281,7 +285,8 @@ public class UserController {
 
 
     @PostMapping("/admin/addTour")
-    public String createTour(@RequestParam("img") MultipartFile image,
+    public String createTour(
+                             @RequestParam("img") MultipartFile image,
                              @RequestParam("name") String name,
                              @RequestParam("description") String description,
                              @RequestParam("flightId") Long flightId,
@@ -299,6 +304,47 @@ public class UserController {
         int stars = hotelService.getStarRatingById(hotelId);
         tourService.saveTour(name, description, price,image, flight, returnFlight, city, country, hotel, stars);
 
+        return "redirect:/admin/tours";
+    }
+
+@GetMapping("/admin/editTour/{id}")
+public String formEditTour(@PathVariable("id") Long id, Model model){
+
+    model.addAttribute("tour", tourService.getTourById(id));
+    model.addAttribute("flights", flightService.listFlight());
+    model.addAttribute("cities", cityService.listCity());
+    model.addAttribute("hotels", hotelService.listHotel());
+
+    return "edit-tour";
+}
+
+    @PostMapping("/admin/editTour/{id}")
+    public String editTour(  @PathVariable("id") Long id,
+                             @RequestParam("img") MultipartFile image,
+                             @RequestParam("name") String name,
+                             @RequestParam("description") String description,
+                             @RequestParam("flightId") Long flightId,
+                             @RequestParam("returnFlightId") Long returnFlightId,
+                             @RequestParam("cityId") Long cityId,
+                             @RequestParam("hotelId") Long hotelId,
+                             @RequestParam("price") float price
+    ) throws IOException{
+
+        Flight flight = flightService.getFlightById(flightId);
+        Flight returnFlight = flightService.getFlightById(returnFlightId);
+        String city = cityService.getNameById(cityId);
+        String country = cityService.getCountryNameById(cityId);
+        String hotel = hotelService.getNameById(hotelId);
+        int stars = hotelService.getStarRatingById(hotelId);
+        tourService.editTour(id, name, description, price,image, flight, returnFlight, city, country, hotel, stars);
+
+        return "redirect:/admin/tours";
+    }
+
+    @GetMapping("/admin/deleteTour/{id}")
+    public String deleteTour(@PathVariable("id") Long id)
+    {
+        tourService.deleteTourById(id);
         return "redirect:/admin/tours";
     }
 

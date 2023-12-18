@@ -55,19 +55,6 @@ public class TourService {
         return tourRepository.findById(id).orElse(null);
     }
 
-    public void editTour(Long id,String name, int id1, int id2, String title, double price) {
-       Tour tour = tourRepository.findById(id).orElse(null);
-//        Country country = countryRepository.findCountryByName(name);
-//        Flight flight = flightRepository.findById(id1);
-//        Flight returnFlight = flightRepository.findById(id2);
-//        tour.setCountry(country);
-//        tour.setFlight(flight);
-//        tour.setReturnFlight(returnFlight);
-//        tour.setTitle(title);
-//        tour.setPrice(price);
-//        tourRepository.save(tour);
-        log.info("Tour with title: {} was edit",tour.getDescription());
-    }
 
     public void saveTour(String name, String description, float price, MultipartFile image, Flight flight, Flight returnFlight, String city, String country, String hotel, int stars)throws IOException {
 
@@ -75,7 +62,7 @@ public class TourService {
         tour.setName(name);
         tour.setDescription(description);
         tour.setCity(city);
-        tour.setCountry(city);
+        tour.setCountry(country);
         tour.setFlight(flight);
         tour.setReturnFlight(returnFlight);
         Period period = Period.between(flight.getDepartureTime().toLocalDate(), returnFlight.getDepartureTime().toLocalDate());
@@ -95,5 +82,31 @@ public class TourService {
     }
 
 
+    public void deleteTourById(Long id) {
+        tourRepository.deleteById(id);
+    }
+
+    public void editTour(Long id, String name, String description, float price, MultipartFile image, Flight flight, Flight returnFlight, String city, String country, String hotel, int stars)throws IOException {
+        Tour tour = tourRepository.getById(id);
+        tour.setName(name);
+        tour.setDescription(description);
+        tour.setCity(city);
+        tour.setCountry(country);
+        tour.setFlight(flight);
+        tour.setReturnFlight(returnFlight);
+        Period period = Period.between(flight.getDepartureTime().toLocalDate(), returnFlight.getDepartureTime().toLocalDate());
+        int days = period.getDays();
+        tour.setDurationDays(days);
+        tour.setDepartureTime(flight.getDepartureTime());
+        tour.setArrivalTime(returnFlight.getArrivalTime());
+        tour.setHotelName(hotel);
+        tour.setHotelStars(stars);
+        tour.setPrice(price);
+        Image img = tour.getImage();
+        img.setImageData(image.getBytes());
+        img.setName(tour.getName());
+        tour.setImage(img);
+        tourRepository.save(tour);
+    }
 }
 

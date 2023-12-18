@@ -47,34 +47,55 @@
     <section class="w-full flex justify-center bg-color3 py-8 h-auto">
             <div class="w-full container 2xl:px-36">
                 <div>
-                    <div class="flex flex-wrap md:justify-between gap-10 px-6 xl:px-0 py-8 lg:px-3 " style="justify-content: space-evenly;>
+                    <div class="flex flex-wrap md:justify-between gap-10 px-6 xl:px-0 py-8 lg:px-3 " style="justify-content: space-evenly;">
 
                         <c:forEach var="tour" items="${tours}">
+                            <c:set var="deletable" value="true" />
+                            <c:set var="editable" value="true" />
 
-                        <figure class="w-full md:w-[45%] xl:w-[30%] h-[450px] relative photo transition-all duration-1000 ">
-                            <div class="w-[100%] h-[100%] bottom-photo absolute bg-white flex flex-col justify-center px-5">
-                                <p class="text-3xl text-color3 capitalize font-secondary"></p>
-                                <p class="text-color1 mb-4">$${tour.price} / с человека</p>
-                                <p class="text-color6">${tour.description}</p>
-                                <div class="flex flex-wrap my-4"">
-                                    <div class="w-[50%] flex"><i class="bi bi-clock text-color4"></i><p class="text-color6 ms-2">${tour.durationDays} Дней</p></div>
-                                    <div class="w-[50%] flex"><i class="bi bi-geo-alt text-color4"></i><p class="text-color6 ms-2">${tour.city}(${tour.country})</p></div>
-                                    <div class="w-[50%] flex"><i class="bi bi-building text-color4"></i></i><p class="text-color6 ms-2">${tour.hotelName}</p></div>
-                                    <div class="w-[50%] flex"><i class="bi bi-star text-color4"></i></i><p class="text-color6 ms-2">${tour.hotelStars} Звёзд</p></div>
+                            <c:forEach var="order" items="${orders}">
+                                <c:if test="${order.tour.id eq tour.id && !order.cancelled}">
+                                    <c:set var="deletable" value="false" />
+                                    <c:set var="editable" value="false" />
+                                </c:if>
+                            </c:forEach>
+
+                            <figure class="w-full md:w-[45%] xl:w-[30%] h-[450px] relative photo transition-all duration-1000">
+                                <div class="w-[100%] h-[100%] bottom-photo absolute bg-white flex flex-col justify-center px-5">
+                                    <p class="text-3xl text-color3 capitalize font-secondary"></p>
+                                    <p class="text-color1 mb-4">$${tour.price} / с человека</p>
+                                    <p class="text-color6">${tour.description}</p>
+                                    <div class="flex flex-wrap my-4">
+                                        <div class="w-[50%] flex"><i class="bi bi-clock text-color4"></i><p class="text-color6 ms-2">${tour.durationDays} Дней</p></div>
+                                        <div class="w-[50%] flex"><i class="bi bi-geo-alt text-color4"></i><p class="text-color6 ms-2">${tour.city}(${tour.country})</p></div>
+                                        <div class="w-[50%] flex"><i class="bi bi-building text-color4"></i></i><p class="text-color6 ms-2">${tour.hotelName}</p></div>
+                                        <div class="w-[50%] flex"><i class="bi bi-star text-color4"></i></i><p class="text-color6 ms-2">${tour.hotelStars} Звёзд</p></div>
+                                    </div>
+                                    <c:choose>
+                                        <c:when test="${deletable}">
+                                            <a href="/admin/deleteTour/${tour.id}" class="underline decoration-color1 text-color6 flex mb-2">Удалить</a>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <p class="text-color6 flex mb-2">Удаление невозможно</p>
+                                        </c:otherwise>
+                                    </c:choose>
+                                    <c:choose>
+                                        <c:when test="${editable}">
+                                            <a href="/admin/editTour/${tour.id}" class="underline decoration-color1 text-color6 flex mb-2">Редактировать</a>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <p class="text-color6 flex mb-2">Редактирование невозможно</p>
+                                        </c:otherwise>
+                                    </c:choose>
                                 </div>
-                                <a href="" class="underline decoration-color1 text-color6 flex mb-2">Удалить</a>
-                                <a href="" class="underline decoration-color1 text-color6 flex mb-2">Редактировать</a>
-                            </div>
-                            <img src="/image/${tour.image.id}" alt="" class="w-[100%] h-[100%] object-cover brightness-75 absolute">
-                            <p class="absolute uppercase text-white bg-color3 px-4 py-1 right-1 top-12 rotate-[-90deg] ">${tour.city}</p>
-                            <figcaption class="absolute text-white bottom-8 right-10 fig">
-                                <p class="capitalize font-secondary text-3xl">${tour.name}</p>
-                                <p class="text-right">$${tour.price} / с человека</p>
-                            </figcaption>
-                        </figure>
-
+                                <img src="/image/${tour.image.id}" alt="" class="w-[100%] h-[100%] object-cover brightness-75 absolute">
+                                <p class="absolute uppercase text-white bg-color3 px-4 py-1 right-1 top-12 rotate-[-90deg] ">${tour.city}</p>
+                                <figcaption class="absolute text-white bottom-8 right-10 fig">
+                                    <p class="capitalize font-secondary text-3xl">${tour.name}</p>
+                                    <p class="text-right">$${tour.price} / с человека</p>
+                                </figcaption>
+                            </figure>
                         </c:forEach>
-
                     </div>
                 </div>
             </div>
