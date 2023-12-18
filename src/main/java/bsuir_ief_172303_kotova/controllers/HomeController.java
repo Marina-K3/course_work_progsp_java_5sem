@@ -1,5 +1,6 @@
 package bsuir_ief_172303_kotova.controllers;
 
+import bsuir_ief_172303_kotova.services.TourService;
 import bsuir_ief_172303_kotova.services.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -11,6 +12,10 @@ import java.security.Principal;
 @Controller
 @RequiredArgsConstructor
 public class HomeController {
+
+
+    private final TourService tourService;
+
 
     @GetMapping("/")
     public String home() {
@@ -31,6 +36,13 @@ public class HomeController {
     @GetMapping("/logout")
     public String logout() {
         return "home";
+    }
+
+    @GetMapping("/tours")
+    public String tours(Model model) {
+
+        model.addAttribute("tours", tourService.listTour());
+        return "tours";
     }
 
 }
