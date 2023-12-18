@@ -70,4 +70,8 @@ public class OrderService {
     public void deleteByTourId(Long tour_id) {
 
     }
+
+    public Order getOrderById(Long id) {
+       return orderRepository.getById(id);
+    }
 }

@@ -240,6 +240,19 @@ public class UserController {
         return "redirect:/admin/orders";
     }
 
+    @GetMapping("/user/getInf/{id}")
+    public String infoByTour(@PathVariable("id") Long id, Model model)
+    {
+        model.addAttribute("order", orderService.getOrderById(id));
+        return "info-order";
+    }
+    @GetMapping("/admin/getInf/{id}")
+    public String infoByTour2(@PathVariable("id") Long id, Model model)
+    {
+        model.addAttribute("order", orderService.getOrderById(id));
+        return "info-order";
+    }
+
 
     @GetMapping("/user/cancelTour/{id}")
     public String userCancelTour(@PathVariable("id") Long id, Principal principal)

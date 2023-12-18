@@ -137,7 +137,6 @@
                                 </div>
 
                                 <a href="/user/ByTour/${tour.id}" class="underline decoration-color1 text-color6 flex mb-2">Приобрести</a>
-                                <a href="/user/getInf/${order.id}" class="underline decoration-color1 text-color6 flex mb-2">Подробности</a>
 
                             </div>
                             <img src="/image/${tour.image.id}" alt="" class="w-[100%] h-[100%] object-cover brightness-75 absolute">
