@@ -17,6 +17,7 @@ public class Tour {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+
     //это время копируется из выбранных рейсов
     @Column(name = "departure_time")
     private LocalDateTime departureTime;//flight.arrivalTime
@@ -24,7 +25,7 @@ public class Tour {
     @Column(name = "arrival_time")
     private LocalDateTime arrivalTime;//returnFlight.departureTime
 
-    @OneToOne(cascade = CascadeType.REFRESH)
+    @OneToOne(cascade = CascadeType.REFRESH, orphanRemoval = true)
     @JoinColumn(name = "image_id")
     private Image image;
 
@@ -44,7 +45,7 @@ public class Tour {
 
     //для заполнения нужен отель
     private String hotelName;
-    private String hotelStars;
+    private int hotelStars;
 
     @ManyToOne(cascade = CascadeType.REFRESH)
     @JoinColumn(name = "flight_id")

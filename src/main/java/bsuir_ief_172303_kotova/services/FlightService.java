@@ -45,5 +45,10 @@ public class FlightService {
     public void deleteFlightById(Long id) {
         flightRepository.deleteById(id);
     }
+
+    public Flight getFlightById(Long flightId) {
+
+        return flightRepository.getFlightById(flightId);
+    }
 }
 

@@ -1,4 +1,7 @@
 package bsuir_ief_172303_kotova.controllers;
+import bsuir_ief_172303_kotova.models.City;
+import bsuir_ief_172303_kotova.models.Flight;
+import bsuir_ief_172303_kotova.models.Hotel;
 import bsuir_ief_172303_kotova.models.User;
 import bsuir_ief_172303_kotova.services.*;
 import lombok.RequiredArgsConstructor;
@@ -13,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -273,6 +277,29 @@ public class UserController {
     {
         flightService.deleteFlightById(id);
         return "redirect:/admin/flights";
+    }
+
+
+    @PostMapping("/admin/addTour")
+    public String createTour(@RequestParam("img") MultipartFile image,
+                             @RequestParam("name") String name,
+                             @RequestParam("description") String description,
+                             @RequestParam("flightId") Long flightId,
+                             @RequestParam("returnFlightId") Long returnFlightId,
+                             @RequestParam("cityId") Long cityId,
+                             @RequestParam("hotelId") Long hotelId,
+                             @RequestParam("price") float price
+                             ) throws IOException{
+
+        Flight flight = flightService.getFlightById(flightId);
+        Flight returnFlight = flightService.getFlightById(returnFlightId);
+        String city = cityService.getNameById(cityId);
+        String country = cityService.getCountryNameById(cityId);
+        String hotel = hotelService.getNameById(hotelId);
+        int stars = hotelService.getStarRatingById(hotelId);
+        tourService.saveTour(name, description, price,image, flight, returnFlight, city, country, hotel, stars);
+
+        return "redirect:/admin/tours";
     }
 
 

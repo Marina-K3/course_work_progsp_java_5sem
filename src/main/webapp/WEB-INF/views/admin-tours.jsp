@@ -47,7 +47,7 @@
     <section class="w-full flex justify-center bg-color3 py-8 h-auto">
             <div class="w-full container 2xl:px-36">
                 <div>
-                    <div class="flex flex-wrap md:justify-between gap-10 px-6 xl:px-0 py-8 lg:px-3 ">
+                    <div class="flex flex-wrap md:justify-between gap-10 px-6 xl:px-0 py-8 lg:px-3 " style="justify-content: space-evenly;>
 
                         <c:forEach var="tour" items="${tours}">
 
@@ -56,7 +56,7 @@
                                 <p class="text-3xl text-color3 capitalize font-secondary"></p>
                                 <p class="text-color1 mb-4">$${tour.price} / с человека</p>
                                 <p class="text-color6">${tour.description}</p>
-                                <div class="flex flex-wrap my-4">
+                                <div class="flex flex-wrap my-4"">
                                     <div class="w-[50%] flex"><i class="bi bi-clock text-color4"></i><p class="text-color6 ms-2">${tour.durationDays} Дней</p></div>
                                     <div class="w-[50%] flex"><i class="bi bi-geo-alt text-color4"></i><p class="text-color6 ms-2">${tour.city}(${tour.country})</p></div>
                                     <div class="w-[50%] flex"><i class="bi bi-building text-color4"></i></i><p class="text-color6 ms-2">${tour.hotelName}</p></div>
@@ -84,7 +84,7 @@
         <section class="w-full flex justify-center bg-color3 py-8 h-auto">
         <div style="display: flex; justify-content: center; align-items: flex-start; width: 73%;">
             <div style="width: 100%">
-                <form action="/admin/addTour" method="post" class="flex font-primary" style="margin-top: 45px">
+                <form action="/admin/addTour" method="post" enctype="multipart/form-data" class="flex font-primary" style="margin-top: 45px">
                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
                     <div style="display: flex; flex-direction: column; flex-grow: 1; ">
 

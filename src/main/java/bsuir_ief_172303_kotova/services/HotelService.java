@@ -37,4 +37,16 @@ public class HotelService {
             hotelRepository.save(hotel);
         }
     }
+
+    public Hotel getHotelById(Long hotelId) {
+        return hotelRepository.getHotelById(hotelId);
+    }
+
+    public String getNameById(Long hotelId) {
+        return hotelRepository.getHotelById(hotelId).getName();
+    }
+
+    public int getStarRatingById(Long hotelId) {
+        return hotelRepository.getHotelById(hotelId).getStarRating();
+    }
 }

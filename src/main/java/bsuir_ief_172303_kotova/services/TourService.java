@@ -1,19 +1,16 @@
 package bsuir_ief_172303_kotova.services;
 
-import bsuir_ief_172303_kotova.models.Image;
-import bsuir_ief_172303_kotova.models.Tour;
-import bsuir_ief_172303_kotova.models.User;
-import bsuir_ief_172303_kotova.repositories.CountryRepository;
-import bsuir_ief_172303_kotova.repositories.FlightRepository;
-import bsuir_ief_172303_kotova.repositories.TourRepository;
-import bsuir_ief_172303_kotova.repositories.UserRepository;
+import bsuir_ief_172303_kotova.models.*;
+import bsuir_ief_172303_kotova.repositories.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.security.Principal;
+import java.time.Period;
 import java.util.List;
 
 @Service
@@ -25,54 +22,22 @@ public class TourService {
     private final CountryRepository countryRepository;
     private final OrderService orderService;
 
+    private final ImageRepository imageRepository;
+
+
     private final UserRepository userRepository;
 
     public List<Tour> listTour(){
         return tourRepository.findAll();
     }
 
-    public void saveTour(Tour tour, String name, int id1, int id2,
-                         MultipartFile file1, MultipartFile file2, MultipartFile file3) throws IOException {
-//        Image image1,image2,image3;
-//        if(file1.getSize() !=0){
-//            image1=toImageEntity(file1);
-//            image1.setPreviewImage(true);
-//            tour.addImageToTour(image1);
-//        }
-//        if(file2.getSize() !=0){
-//            image2=toImageEntity(file2);
-//            tour.addImageToTour(image2);
-//        }
-//        if(file3.getSize() !=0){
-//            image3=toImageEntity(file3);
-//            tour.addImageToTour(image3);
-//        }
-//        Country country = countryRepository.findCountryByName(name);
-//        Flight flight = flightRepository.findById(id1);
-//        Flight returnFlight = flightRepository.findById(id2);
-//        tour.setCountry(country);
-//        tour.setFlight(flight);
-//        tour.setReturnFlight(returnFlight);
-//        log.info("Saving new Tour. Title: {}; Price: {}",tour.getTitle(),tour.getPrice());
-//        Tour tourFromDb = tourRepository.save(tour);
-//        tourFromDb.setPreviewImageId(tour.getImages().get(0).getId());
-        tourRepository.save(tour);
-    }
+
 
     public User getUserByPrincipal(Principal principal) {
         if(principal==null) return new User();
         return userRepository.findByEmail(principal.getName());
     }
 
-    private Image toImageEntity(MultipartFile file) throws IOException {
-         Image image = new Image();
-//        image.setName(file.getName());
-//        image.setOriginalFileName(file.getOriginalFilename());
-//        image.setContentType(file.getContentType());
-//        image.setSize(file.getSize());
-//        image.setBytes(file.getBytes());
-        return image;
-    }
 
     public void deleteTour(Long id){
 //        Tour tour = tourRepository.findById(id).orElse(null);
@@ -103,6 +68,32 @@ public class TourService {
 //        tourRepository.save(tour);
         log.info("Tour with title: {} was edit",tour.getDescription());
     }
+
+    public void saveTour(String name, String description, float price, MultipartFile image, Flight flight, Flight returnFlight, String city, String country, String hotel, int stars)throws IOException {
+
+        Tour tour = new Tour();
+        tour.setName(name);
+        tour.setDescription(description);
+        tour.setCity(city);
+        tour.setCountry(city);
+        tour.setFlight(flight);
+        tour.setReturnFlight(returnFlight);
+        Period period = Period.between(flight.getDepartureTime().toLocalDate(), returnFlight.getDepartureTime().toLocalDate());
+        int days = period.getDays();
+        tour.setDurationDays(days);
+        tour.setDepartureTime(flight.getDepartureTime());
+        tour.setArrivalTime(returnFlight.getArrivalTime());
+        tour.setHotelName(hotel);
+        tour.setHotelStars(stars);
+        tour.setPrice(price);
+        Image img = new Image();
+        img.setImageData(image.getBytes());
+        img.setName(tour.getName());
+        imageRepository.save(img);
+        tour.setImage(img);
+        tourRepository.save(tour);
+    }
+
 
 }
 

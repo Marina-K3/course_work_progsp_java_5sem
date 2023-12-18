@@ -37,4 +37,15 @@ public class CityService {
         cityRepository.deleteById(id);
     }
 
+    public City getCityById(Long cityId) {
+        return cityRepository.getById(cityId);
+    }
+
+    public String getNameById(long id) {
+        return cityRepository.getById(id).getName();
+    }
+
+    public String getCountryNameById(Long id) {
+        return cityRepository.getById(id).getCountry().getName();
+    }
 }
