@@ -9,7 +9,7 @@ import java.util.Date;
 @Setter
 @Getter
 @Entity
-public class Comment extends User {
+public class Comment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
