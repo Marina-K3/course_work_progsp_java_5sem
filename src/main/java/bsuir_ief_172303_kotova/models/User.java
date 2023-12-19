@@ -37,7 +37,5 @@ public class User {
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "user", orphanRemoval = true)
     private List<Order> orders;
 
-
-
     // Геттеры, сеттеры и другие методы
 }

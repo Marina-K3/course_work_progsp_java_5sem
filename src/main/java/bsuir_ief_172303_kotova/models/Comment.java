@@ -3,16 +3,13 @@ package bsuir_ief_172303_kotova.models;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
 
 @Setter
 @Getter
 @Entity
-public class Comment {
+public class Comment extends User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -26,7 +23,10 @@ public class Comment {
 
     private String ip;
 
-
+    //нововведение
+    @ManyToOne(cascade = CascadeType.REFRESH)
+    @JoinColumn(name = "user_id")
+    private User user;
 
     // getters and setters
 

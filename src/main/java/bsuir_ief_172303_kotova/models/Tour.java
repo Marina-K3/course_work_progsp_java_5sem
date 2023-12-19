@@ -13,7 +13,7 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @Table(name = "tours")
-public class Tour {
+public class Tour extends Hotel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -47,6 +47,11 @@ public class Tour {
     //для заполнения нужен отель
     private String hotelName;
     private int hotelStars;
+
+    //нововведение
+    @OneToOne(cascade = CascadeType.DETACH)
+    @JoinColumn(name = "hotel_id")
+    private Hotel hotel;
 
     @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
     @JoinColumn(name = "flight_id")
